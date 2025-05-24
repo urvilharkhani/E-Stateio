@@ -1,9 +1,44 @@
+
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-const ListingCard = ({ title, image, location, price, rating, type }) => {
+// const ListingCard = ({ title, image, location, price, rating, type, category,name }) => {
+//   const formattedPrice = price.split('/')[0];
+//   const suffix = category === 'rent' ? '/month' : category === 'sale' ? '' : `/${price.split('/')[1]}`;
+//   console.log("title",type)
+//   return (
+//     <View style={styles.card}>
+//       <Image source={{ uri: image }} style={styles.image} />
+
+//       <View style={styles.details}>
+//         <View style={styles.row}>
+//           <Ionicons name="star" size={RFValue(12)} color="#FFC529" />
+//           <Text style={styles.ratingText}>{rating}</Text>
+//           <Text style={styles.dot}>•</Text>
+//           <Text style={styles.type}>{type}</Text>
+//         </View>
+
+//         <Text style={styles.title}>{title}</Text>
+
+//         <View style={styles.row}>
+//           <Ionicons name="location-outline" size={RFValue(12)} color="#aaa" />
+//           <Text style={styles.location}>{location}</Text>
+//         </View>
+
+//         <Text style={styles.price}>
+//           <Text style={styles.priceMain}>{formattedPrice}</Text>
+//           <Text style={styles.priceSub}>{suffix}</Text>
+//         </Text>
+//       </View>
+//     </View>
+//   );
+// };
+const ListingCard = ({ title, image, location, price, rating, type, category, currency }) => {
+  const formattedPrice = `${price} ${currency}`;
+  const suffix = category === 'rent' ? '/month' : '';
+
   return (
     <View style={styles.card}>
       <Image source={{ uri: image }} style={styles.image} />
@@ -24,8 +59,8 @@ const ListingCard = ({ title, image, location, price, rating, type }) => {
         </View>
 
         <Text style={styles.price}>
-          <Text style={styles.priceMain}>{price.split('/')[0]}</Text>
-          <Text style={styles.priceSub}>/{price.split('/')[1]}</Text>
+          <Text style={styles.priceMain}>{formattedPrice}</Text>
+          <Text style={styles.priceSub}>{suffix}</Text>
         </Text>
       </View>
     </View>

@@ -1,0 +1,864 @@
+[
+  {
+    "id": 452164129,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "3200",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/2c5b747da65c7f15ef06e64e753e4f09-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/2c5b747da65c7f15ef06e64e753e4f09-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/08dc615ad944167dc4e72cc38195f223-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/c7946e1b7d4feb997dcc3eb57dd1c769-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/5b962f89e790672aa9fdff2f9acc7d1c-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/16f73d5a3761a793c0dd77bf5b02b6b5-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/9da92be8f4a69b01af5348d68c242993-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/5c78cabfb75a2f02b11aa3eafca8c8df-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/d2f713bca4fc4eb4434122e9686fe68b-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/e2f39dec83967031c527a2a14164ee72-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/8a41c1a5b6c5a0c7e24ae23521cd3f63-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/9161a681df0fc14f359db86ac53bf462-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/115ed620476519d64d417e50f1d3c4c2-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/8d1d58235d7c1cf44490ede9c80359b7-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/1167916de854cd08998b5000e2d39b2a-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "Beautiful 3-Bedroom Rental | Available June 1\n\nStep into comfort and convenience with this stunning 3-bedroom, 2-bathroom home offering 1,225 sq ft of modern living space. Located in a peaceful neighbourhood, this bright and spacious unit is perfect for families, professionals, or anyone seeking high-quality living.\n\n Features:\n\n1,225 sq ft of beautifully finished space\n\n3 generous bedrooms and 2 full bathrooms\n\nOpen-concept living/dining/kitchen with plenty of natural light\n\nIn-unit laundry\n\nPremium finishes throughout\n\n Extras Included:\n\n$3200/month \n\nSnow removal and grass cutting included no maintenance hassles\n\nParking available\n\n Available June 15\nDon't miss this opportunity to live in a turn-key home that blends comfort, space, and stress-free living.\n\nContact us today to schedule a viewing or apply!",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 452106804,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "1300",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/5c20b1c51657e1673a945aef786e8bf7-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/5c20b1c51657e1673a945aef786e8bf7-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/7b85c562eb062df92287fb971c8058f9-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/812e4c8f234af7d30ce15d6718ddd9f0-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/85d517057cddb5bff1e7d81c5de128bb-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/27136ca14f6f129f330394990fa7cc0a-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/4cb4745a79fb264c0504361cecc2250f-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/30033b49fa876be9e1892e51bbe26f79-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/241c2a9a39c4343ef82690b42b0fb24e-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/e2e4bd516a0ad7e9e825b20843785bef-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/3181351548477f42cc7c47e538a09406-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/8adeba90d493703bf272162b8177a887-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "McKellar Place is a senior living apartment community designed for independent older adults, offering two nutritious meals daily along with a complimentary breakfastall in a comfortable and supportive environment. Each studio at McKellar Place rents for $1,300 per month, which equates to $4.01 per square foot. Additionally, there is a meal plan that costs $700 per month. Renters who move in by June 1, 2025 will receive one month of complimentary meals. Thank you.",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 449625731,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "1400",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/5054eed4637aae29047bee1bcd6113e7-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/5054eed4637aae29047bee1bcd6113e7-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/f6e01cba5bfbe1f56fae88515506ea0e-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/5d46ee7235112cef5d5f911bed738dc8-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/ddc82fd0bea4b9c171960b34fc2c3755-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/570ee0a2a3b15fd4697debd159cc5aac-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/c89b7a963b02078db6dc75e71fa2898d-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/6009e38f2cce5fdbab7ba10a8d5301b9-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "Cozy 1-Bedroom Apartment in Current River $1400/month! \n\nLooking for your next home sweet home? This charming 1-bedroom, 1-bathroom apartment is available right away and has everything you need!\n\n Apartment Highlights:\n\n Rent: $1400/month\n\n 1 spacious bedroom\n\n 1 bathroom\n\n Gas & water INCLUDED\n\n Hydro separate\n\n Dogs negotiable bring your furry friend!\n\n Laundry in building convenience at your doorstep\n\n Parking not included\n\n Location!\nLocated in the desirable Current River neighborhood, right by Boulevard Lake close to local shops, parks, and more!\n\nReady to move in? Contact us now to schedule a viewing and make this cozy spot your new home!",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 345203890,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "2200",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/183fef2e75efde83a4ca4573ad6482f0-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/183fef2e75efde83a4ca4573ad6482f0-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/653497c1f8d9636c6d4db05f473be78f-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/ab49ad51c7002817de8301c101821d20-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/8850ad33e75941926d339f8e18616223-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/78267fed4fbe052b0cbcd5e0a84bb774-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/706de095ac3bbd0e0e4a440ca5abf56a-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/a56315dc475e85a9b7b9baf97d4b24e6-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/e485be2ad2c1374046d53636dc14f54b-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/4dea48197400c5d1ed09a83205964cca-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "Welcome to our charming 3-bedroom, 1-bathroom duplex rental, offering a cozy yet spacious layout perfect for comfortable living. This inviting home features a well-appointed kitchen, a bright living area for relaxation, and three bedrooms ideal for restful nights. With its convenient location and cozy atmosphere, this duplex promises to be the perfect sanctuary for you and your loved ones. Inclusive utilities up to a reasonable cap.",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 450408826,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "1900",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/d9d4f1e45e87fb35bf4f25fd40c1101e-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/d9d4f1e45e87fb35bf4f25fd40c1101e-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/e893c3e937dda368738b176f16adb124-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/5630a90eeb5a094174d28a4fdbd34953-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/7ed67319ec3726cfa3676569e955765e-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/dcf39e53b298311e63cb2e069ca86aa5-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/70739fc176df8e8b1c823baa5af8cd6f-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/f8a966774520e023ccf08748085f2037-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/ba6d683d96f498c6d279991c7c7096b6-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/9109d223277d239999d7e614d89b7c33-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/a20af464a2832d2c4776d38cb77c709a-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/901bdaf8585e8a822313a9f4f5660bc8-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/47fe7a1ccb890e963048b900ff38fa58-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/9217c28e6d68f84ba193d141447f3d61-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/cb68528411977b32d10fb12536c4946c-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/ce884c7c16c2da9ac1d7a3036456567e-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/645d5ed7515e5f0c82011c59dcd542a0-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/bcb3ec823c1568906215edeee64f5a02-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/461214cbb78d3468fc6e2160b7e22842-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/7dea89b58235cdff5a39b28c1aa9ae99-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/2f3394c866c226b7f2895a6794358e8b-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "Newly Renovated 3 Bedroom Main Floor Unit Bright & Beautiful! \n\n Location: 531 Luci crt\n Rent: $1900/month + 70% utilities (heat, water & hydro)\n Bedrooms: 3\n Bathroom: 1\n\nWelcome to your new home at 531 Luci Court!\nThis stunning main floor unit has been freshly renovated and is ready for you to move in. \n\n Features include: In-unit laundry\n Dishwasher for easy clean-up\n Tons of natural light throughout\n Cozy fireplace perfect for chilly nights\n Private entrance\n Access to yard\n\nPerfect for a small family, professionals, or roommates looking for a spacious, bright, and comfortable place to call home.\n\nPlease make sure your tenant profile is complete and reach out to us to schedule a showing!",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 2061890845,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "1199",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/5fa0ec2754d660e7a3200799f29f908f-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/5fa0ec2754d660e7a3200799f29f908f-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/1b5a7a57f7ad52fa790655772a3a52d1-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/f525c7bf39bd4993e71f3ae8d9988d3b-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/6eec54a6c651c6fb5798a560fa59f3c1-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/8c2e66592d534f6cb4f87c127f553e15-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/8bdc4c8539bc333b851df1853f0d22ad-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "Don't be shocked by your monthly bills! This amazing, one bedroom apartment includes ALL utilities for an affordable monthly rent! \n\nAmazingly located in a great residential neighbourhood, but only steps from downtown P.A. and all the amenities. Easy walk to Lu law school and only 3 km. from Lakehead U. main campus. Parks, restaurants, library, grocery stores and more just steps away! \n\nThis updated apartment also features: \n\n- Updated flooring and trim and doors. \n- A lovely backyard space for summer BBQ's.\n- An updated three piece bathroom. \n- Coin laundry and professional property management \n\nDon't miss out on this one. First/last and references required. All Inclusive Rent!\n\nTo book a viewing or apply, go to:",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 450032522,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "1500",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/f8d8d0af292e53cf503e8a1fb488280d-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/f8d8d0af292e53cf503e8a1fb488280d-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/c442a577b68877b1ef8fc1e4017b6ae4-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/b9261622eb011e1e24870dce4ba13087-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/9a867d1376fa0732e4cc126db3c3e6ce-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/63536e719d5eef469c1c87975bfbb1f8-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/a2557377fdaa1abf772c3f62ca05077b-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/60c7587d9116e170196c45922517f870-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "Welcome to this stylish bachelor unit, offering a compact yet functional living space for the modern individual. With an open layout, this unit maximizes every square inch to provide convenience and comfort. The main living area seamlessly combines a cozy sleeping nook, a compact kitchenette, and a versatile living space, perfect for both relaxing and entertaining. Situated in a prime location, this bachelor unit offers urban living at its finest, with easy access to amenities, dining, and entertainment options. Ideal for those seeking a minimalist lifestyle without compromising on quality and style.",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 442716073,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "1375",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/7aea34255a67fab612057c7563fe3ea8-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/7aea34255a67fab612057c7563fe3ea8-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/104c196ff034d1bd890e5a0f66a4d35b-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/b179348fd7e9428791d4f333fe7a5268-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/15316d76d6bd3718c2d70106a59fb609-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/959ab9ef7614ba2dae82e3c5ddc07e35-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/d1149f395e3257718352ad06777c3fc5-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/3277e25d6c63449d2baad39a9dfa8ca0-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/7bf2398fdd22e22f551349cb5a4f6460-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/5ec7615572657f9373ed73b9c98f7272-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "Charming Furnished Basement Apartment 351 Foley St \n\nLooking for a cozy and convenient place to call home? Look no further!\n\n Location:\nNestled in a peaceful, desirable neighborhood, this basement apartment is perfect for professionals or students. Enjoy nearby amenities, parks, and a friendly community vibe!\n\n Rent:\n$1,375/month ALL INCLUSIVE. Including wifi no extra bills to worry about!\n\n Features:\n\n-Fully Furnished! \n-Bright, welcoming space with modern touches \n-All utilities included (heat, water, electricity, wifi) \n-Convenient access to public transit and local shops \n\nWhy You'll Love It:\nThis apartment offers the perfect blend of comfort, convenience, and value. Whether you're a busy professional or a student looking for a stress-free setup, this home is ready for you.\n\n Available Now!\nDon't wait a gem like this won't last long.\n\n Contact us today to schedule a viewing or for more details!\n\n Make 351 Foley St your next home sweet home!",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 449957117,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "2700",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/0939c0ad8f5fe1a0cd6aa1751e9633a2-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/0939c0ad8f5fe1a0cd6aa1751e9633a2-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/1d566eeb73df1ea75fb03979c2add5b0-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/0e363f86bd557371d645a76ecfbb87d7-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/c59b18e60efdd96089af01141b4f0d76-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/101217eff41ff0f1a0ea81fc9e4be1b5-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/43b268def0ba2dc72cf2b32ee202c48f-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/ba222c6d8c3f62858e8449f6a2e2f77a-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/a9b2336096e3929d34869d722912d144-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/185ea40d336ab6c72ccf51b5632a67be-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/78cf0df75c04b87f81dee371c45b5d84-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/cf6fc63a938621e41209ae7aaeda62d4-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/91c4039c779af7292a771ef648b8f12d-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/afa28aeb43f7ad3e6013e40b397c160c-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/a5288bf1c7dfa5e43f22022132a236dd-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/6261b432becc8c104ef21789dc1cce81-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/7f9df256ed20a469d21c613a867a7a1b-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/72f5a3c8f73daf4c89da6671c166580a-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/255ed94551e805d977fc5b93a4e34b43-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/eb82f67b8680234c1f160fde154e8075-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/c94fd604618fb63caebda759a97a4dd5-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "Brand New 3-Bedroom Unit for Rent All Utilities Included!\n\n Location: 2620 Victoria Ave E, Thunder Bay\n Rent: $2,700/month (Includes all utilities!)\n\n Features:\n 3 Spacious Bedrooms Plenty of room for families or roommates\n 1 Modern Bathroom Stylish & functional\n All Utilities Included No extra bills to worry about!\n Lots of Natural Light Bright & inviting living space\n In-Suite Laundry Convenience at your fingertips\n Brand New Unit Be the first to live in this fresh, modern space!\n\n Available Now! Don't miss out on this fantastic rental opportunity. If you're interested please make sure you send us a message to schedule a viewing!",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 449625733,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "2250",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/f32d426e2aa1fade075b2c10774e942a-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/f32d426e2aa1fade075b2c10774e942a-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/292fe7bbaf54ee07874f182e9c93f9f0-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/54fd4e4ef658bce22287187499568579-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/807590eff059a3084b186fe35b0cfdec-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/7f42df8a30b2bbbe8b3b349d1940b8e3-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/1a96d525de68480a3d7591bb8bf78dff-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/1e555c1439560926ff315c4dc1184339-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/301f9966a0ae7744b61be0fce418e78d-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/bb7083c81369e4fe544017c434ce032d-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/745e49868088564bdcd51fd3e97cf854-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/52da802ec3b00cbd893532c4a07fa392-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/a5d5157f1feeefe9d82af256cd4435c0-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/04ab0f6952b27f967bdf54e5f3f82c98-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/4d026c3b0912e1bcddd223d2f1d16257-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/2ebde834d1b2cf75ae0e198eda6529dd-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/66943f8b5c4d4a6ec0c33b3f1ad56325-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/62acf85f1c67401646c77135e94dea92-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/7f3b35a7e8ee5b3abefbb2403b226c08-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/36618e03636de4b62224f8f64f128a8c-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/5d1da7955cf715dd013370959bcbd973-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "This beautiful 3 bedroom, 1 bathroom place could be your perfect place to call home! Located on 371 Ambrose St, this home is in a great neighbourhood that is close to schools, grocery stores, transit and tons of amenities. Walking distance to downtown PA and the university.\n\nThis unit features lots of space, great natural light, a huge backyard that you are welcome to garden in, laundry in the building, pets are negotiable and could be yours immediately for $2250/month utilities included!\n\nIf you are interested, please make sure you reach out to schedule a showing. We look forward to hearing from you!",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 449625732,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "1800",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/77a88c4bab912b40c76af0feaef6b896-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/77a88c4bab912b40c76af0feaef6b896-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/d1fe9395d508babdef4336613d4b42d9-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/d8d6fe030c8f5ef69f91c7e979d3fec5-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/6c55495a356dccfa0124999665d9d451-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/2be6cbd50d32770968094175a12a8533-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/b21ad2b06d7a55926243f98ae19ba7f4-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/3af1ed41eac91da73844a8e621d83efa-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/bffb05e6afbd304a641d7a1ab0f0c9d0-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/7b5ffea4f0ffcc09d1cd1e08ff1f0252-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/979b685d9892cc56cdf491bdd1f24c98-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "This beautiful 2 bedroom, 1 bathroom place could be your perfect place to call home!\n\nLocated at 179 Ontario Street, this home is in a great spot that's within walking distance to downtown PA, including the vibrant Red River restaurant and shopping district. This home is perfectly located close to major bus routes, schools and grocery stores. and features lots of space and has great natural light. It could be yours as of April 16, 2025 for $1800/month.\n\nIf you are interested, please make sure your profile is complete and reach out to schedule a showing. We look forward to hearing from you!",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 449625734,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "2200",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/a2883dcafca90113a4dde94db6e8e006-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/a2883dcafca90113a4dde94db6e8e006-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/48acd05e20aa30e509a0713fe2888a31-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/747f96f54287522ab6bf6ed9133178bf-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/74576267ed743503125c7cd19e770022-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/617cdc0135f8fb2cc4b964daede1aa26-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/7a8854c1901cbb1e6c7a726be0f19e8e-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/c37d3c8d7d8af99eb21f49f6e3602e3b-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/4af9a5dd1e72994e2839c5262b6950a3-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/60b0a92a1bc0b027439b16adec315dad-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/39c20fed887a0dc1d2ec8e289878b996-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "Available for rent: Stunning 3Bedrooms , 1 bathroom home just minutes away from Bora Laskin Law School! Close to downtown, shopping , groceries , bars , and restaurants .\n\nLocated in an amazing Port Arthur neighborhood on Dufferin st, steps away from Hillcrest Park!\n\nLarge kitchen, spacious layout, plenty of natural light , 1 parking spot, on-site laundry. Pets negotiable! Move in on June 01, 2025 for $2200/month. Heat & Water Included , Hydro Not Included \n\nInterested? Please send a breif discription of yourself and any other occupants. We will be happy to schedule a showing . We can't wait to hear from you!",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 2054237805,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "2125",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/415ff2c5c7f293999e58117c9d6e8cc5-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/415ff2c5c7f293999e58117c9d6e8cc5-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/5e97e761ea18eebd5bdef27d1c154cdb-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/1f128d220cc24f6b522fcdbc78c22c04-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/5588518964d7144410f337ac140552e7-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/6a62da8d6812b3bbc80aef00a3d5a691-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/18eca99934fc015a0230f97f8351ef9d-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/d26f5c278542cce6a31f4beed731302d-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/fa422928f65754b637e593fe63dd6128-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/571b649a79727c5010ae4953e80b819c-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/63012bc5d907c4bd32afa47a722f19e3-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/47e6637d088ea650bde5ef9bb89dec7c-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/bb9c53e4236f313efb5b4eaff09b4aab-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "Charming Home with All-Inclusive Rent Prime Location Near Red River Rd!\n\nEnjoy stress-free living with no utility bills to worry about, in this beautifully updated home. With a fantastic location, modern updates, and a hassle-free, all-inclusive pricing structure, this property is a must-see!\n\nKey Features:\n\n- Refinished hardwood floors, adding warmth and character\n\n- Fully updated bathrooms with stylish finishes\n\n- Fully fenced backyard perfect for pets or outdoor activities\n\n- Modern lighting fixtures, updated doors, and more\n\n- Professional property management for peace of mind\n\nAdditional amenities include shared laundry facilities (with basement apartment) and a fridge and stove.\n\nWe are seeking a responsible tenant for a minimum one-year lease. First/last month's rent and references required.\n\nTo schedule a viewing or submit an application, visit:",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": "448339354",
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "0",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "",
+    "images": [],
+    "description": "AboutValleyview Apartments is located on the northwest corner of Valley Street and John Street and is immediately north of the intersection of the Expressway and John Street. The two major arterial routes provide easy access to all areas of Thunder Bay. The property is located within walking distance of a full range of private and public school facilities and is less than a mile from the County Fair Plaza retail mall.Advertised rental rates represent the lowest price available and may vary from unit to unit.Community Amenities- Intercom security system- In-building coin operated laundry facilities- Refrigerator and rangeSuite Amenities- In-suite storageUtilities Included- Heat- Water",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": "444783292",
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "0",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/651c24ecfd95659668197d884efdb79f-cc_ft_1536.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/651c24ecfd95659668197d884efdb79f-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/8fc0a870e68ab9efd2290aa736f0f914-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/290ac1019b8bc0b4f802553090fc1283-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/0d78750d28d391fbe0caaf65af0a5bcc-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/4d39438f8d28e3ae906c52425423d1e8-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/d2cb3a4c72d3c54d60e1eac37aff1a7d-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/b4dc59c637437efb655c0a1609b33051-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/9440d4cd1b7e05dbc6c4092ef4abd6a3-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/7dd5f7c132768d153cb87b5294f63338-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/a9a7ffe367c3687558c98ab5c2deb2c0-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/3da24690b1e66ca9728f5c09c45965df-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/b562b7bfaa1476e7ff7ea994bc4b2329-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/810cba1dc255bffa1184abac12175872-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/73cbaf3bf3502b90ee2a486fa1828a0d-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/eacced0f66933ffe2552bd65c0e2e88f-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/5cd24049d121a4e2d3a5e8edd0338c33-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/2d0a4cc3e73afee2cac2eeaa2662a784-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/c81adf5f5f51e596f6ce36248b70fd79-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/5dfe2b0a3ce6641245cb9f825bed80ba-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/5911c6edd26c98f4ec98187acd9d86e1-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/a60780a7343ea9a4322f5a095f4e8f5c-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/7075833dc6e7510042dcf490b0b1233e-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/4991eb6123c9d786972b5bf4c3960590-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/77b84d580c7ffb50af3a44b84099d2fd-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/a4cefa824b03d22ea7fd2872401d4b1e-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/acd7f9d1c2c2829ebfcaab2ebc7099ee-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/a13e0a979a521e067008e94e938e028f-cc_ft_1536.jpg"
+    ],
+    "description": "Welcome to Creekview Estates. Thunder Bay's premier townhouse community where we welcome professionals, familys, seniors and students. Our 2 story townhomes are all 3 bedrooms with a 4-piece bathroom. Each unit contains large kitchens with \"optional dishwasher\" and living rooms with walk out patio doors to your private enclosed backyard. Each unfinished large basement contains hook ups for both washer & dryer. We also offer 2 car parking located in the driveway of each townhouse with electrical plug-in for your convenience during the winter months. There is a Bus Stop is located in front of the property on County Blvd.",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 443831567,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "1800",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/cc99afe2ced4e4ef5e958a243dca344f-uncropped_scaled_within_1536_1152.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/cc99afe2ced4e4ef5e958a243dca344f-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/bc8b5f7947ae8f13a3cf1346d1130a87-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/b5d64c9f1ed804a7b667003049971522-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/3c963f38945ab72c05d184d84bdc93e4-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/d24a5f158079d9a29470ac1cac5db11b-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/89c1d29dbd6fa150b33d72282c22e683-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/66428b42f69c5b786a4bee390b20dfc1-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/b87626e8bd5d0efa98dc04b53e793226-uncropped_scaled_within_1536_1152.jpg",
+      "https://photos.zillowstatic.com/fp/aaff3b7502c22931aa00d3f27bf1e53e-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "description": "Spacious 2-Bedroom Apartment Your Perfect Home Awaits! \n\nLooking for a cozy, secure place to call home? This 2-bedroom apartment in a fully secure building at 285 Grenville Ave, Unit C is just what you need! \n\n $1,800 All utilities included stress-free living made easy!\n\n Enjoy the tranquility of Current River:\n\n-Quiet, peaceful streets \n-Just 2 blocks from Boulevard Lake \n-Nearby community centers and local shops on Grenville Avenue \n\nThe unit features:\n-A spacious living room, perfect for relaxation and entertaining \n-An abundance of natural light, making the space bright and airy \n-1 Parking space\n\nInterested? Send us a message with a little info about yourself! We can't wait to hear from you!",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": "443330281",
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "0",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://photos.zillowstatic.com/fp/7367f74137154f990d199f2cb8d09800-cc_ft_1536.jpg",
+    "images": [
+      "https://photos.zillowstatic.com/fp/7367f74137154f990d199f2cb8d09800-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/1f7c33b3d92a4b5a0496da777f489339-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/add5e55d2b2c15f8dc722dbf29a2041a-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/7631c06efbf7d08c06c8615e124d99e3-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/30f9705d29e9421454cfe7c3d18de136-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/6c1fccb44df34173b802aea2836254f4-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/22ecd2d95e6ac4aa5507e56d65cd05e9-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/56d98ada51a7deec996db50b1ee8dc74-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/70a3e704da7db9ac0bbe23470e4643de-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/97c80a28b2b64d553cb9fc8f1bfb45cb-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/9c9bac4ac4c02c90bc4680bbcb40b13c-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/5ccd7899117ae53c070a10cf4075ff88-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/88f89d8a3124e1226bc25535600d2498-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/222368a1a2c594702cc4ba5dcfd7728e-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/2104ef3480732f50ecdc791d679548c2-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/9e2ac4aea7d5513c9a491a1cef5e1ea4-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/c8d94b0020a7746cfbd9cb87cfbf9aae-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/bc8a52324ff856e44c0fc51b5951267d-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/db6a7370e0df9b6441a02de1a65ca364-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/be4a180e8a587e0985b7193c5f38cd92-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/a9fa37a359ab118f6f52f577304c284c-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/be3436da38af153bd6235147037eb06d-cc_ft_1536.jpg",
+      "https://photos.zillowstatic.com/fp/ba3d36205620511e7d52ee471985585b-cc_ft_1536.jpg"
+    ],
+    "description": "AboutThunder Bay townhome living at its finest. Our 3 bedroom townhomes are at the top end of affordable family dwellings. Each 2 storey unit includes a large eat-in kitchen, 3 bedrooms, one 3 piece washroom, and a large living room with a sizable picture window. The property is surrounded by an abundance of greenspace. At its centre is a park and skating rink where the residents gather for leisure enjoyment. We're located only 5 minutes to Thunder Bay International Airport, Arthur Street and the Thunder Bay Expressway. We are also serviced by the City's bus routes which directly link with Lakehead University and Confederation College.Community Amenities- Visitor parking- Outdoor parking- On-site staff- Public transit- Shopping nearby- Parks nearby- Schools nearby- No Smoking allowed- Street Parking- Bike Path- playground- Winter Block Heater plugs- Backyard space- No smoking allowed- Water Tank (Rental)Suite Amenities- Fridge- Stove- Ceramic floors- Hardwood floors- Individual thermostats- In-suite storage- Walk-in closets- Cable ready- Internet ready- Unfurnished- Backyards- Vinyl Plank FloorsUtilities Included- Garbage CollectionFREE MONTH OF RENT - LOOK AND LEASEE. & O.E. conditions apply. Promotions subject to change or be cancelled at any time without notice or penalty. Views, images, square footage, and virtual tours may be a representation of similar suites, finishes may vary. Please contact us for more information.",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  },
+  {
+    "id": 2054873221,
+    "title": "No Title",
+    "location": "Unknown Location",
+    "price": "2195",
+    "currency": "CAD",
+    "rating": 5.0,
+    "type": "Home",
+    "image": "https://maps.googleapis.com/maps/api/streetview?location=314+Heath+Ct+%23250%2C+Thunder+Bay%2C+ON+P7E6G2&size=1536x1152&key=AIzaSyARFMLB1na-BBWf7_R3-5YOQQaHqEJf6RQ&source=outdoor&&signature=wPgUCm7JyDLL3i-BeUTzAdOO7o0=",
+    "images": [
+      "https://maps.googleapis.com/maps/api/streetview?location=314+Heath+Ct+%23250%2C+Thunder+Bay%2C+ON+P7E6G2&size=1536x1152&key=AIzaSyARFMLB1na-BBWf7_R3-5YOQQaHqEJf6RQ&source=outdoor&&signature=wPgUCm7JyDLL3i-BeUTzAdOO7o0="
+    ],
+    "description": "AboutOur renovated three bedroom townhomes are located in a mature, treed area in the quiet neighbourhood of Westfort.Features may include:- Fresh paint, new tile and vinyl plank flooring- New kitchen countertop, sink and cupboards- Refrigerator, stove, dishwasher- New bathroom fixtures- In-suite washer and dryer- Full basement- Surface parking- Patio and rear yardAdvertised rental rates represent the lowest price available and may vary from unit to unit.Cedars of Thunder Bay is professionally managed by Shelter Canadian Properties Limited.Community Amenities- Energized surface parking- Children's play area- In-suite washer and dryer hook-up- Full basement- Individual forced air gas fired furnace- Patio and rear yardSuite Amenities",
+    "status": "rent",
+    "features": [
+      {
+        "icon": "resize-outline",
+        "label": "40 x 80 m"
+      },
+      {
+        "icon": "bed-outline",
+        "label": "4 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "car-outline",
+        "label": "1 Parking"
+      }
+    ],
+    "agent": {
+      "name": "Sebastian Vettel",
+      "image": "https://i.pravatar.cc/100"
+    }
+  }
+]

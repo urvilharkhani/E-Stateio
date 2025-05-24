@@ -1,94 +1,150 @@
 import React, { useEffect, useState } from 'react';
 import {
-  SafeAreaView,
   View,
   Text,
-  FlatList,
   Image,
   StyleSheet,
   TouchableOpacity,
+  SafeAreaView,
   StatusBar,
   Platform,
 } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { getFavorites } from '../common/storage';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { getFavorites, removeFavorite } from '../common/storage';
+import CustomModal from '../component/CustomModal';
+import { SwipeListView } from 'react-native-swipe-list-view';
 
-const FavoriteScreen = () => {
-  const navigation = useNavigation();
+const FavoritesScreen = () => {
   const [favorites, setFavorites] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const loadFavorites = async () => {
       const data = await getFavorites();
       setFavorites(data);
     };
-
     const unsubscribe = navigation.addListener('focus', loadFavorites);
     return unsubscribe;
   }, [navigation]);
 
-  const renderItem = ({ item }) => (
-    <TouchableOpacity
-      style={styles.card}
-      onPress={() => navigation.navigate('Detail', { item })}
-    >
-      <Image source={{ uri: item.agent.image }} style={styles.image} />
-      <View style={styles.info}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.location}>{item.location}</Text>
-        <Text style={styles.price}>{item.price}</Text>
+  const handleRemove = async () => {
+    if (selectedItem) {
+      await removeFavorite(selectedItem.id);
+      setFavorites(prev => prev.filter(fav => fav.id !== selectedItem.id));
+      setModalVisible(false);
+    }
+  };
+
+  const renderItem = ({ item }) => {
+    const suffix = item.status === 'rent' ? '/month' : '';
+    return (
+      <View>
+        <TouchableOpacity
+        activeOpacity={1}
+          style={styles.card}
+          onPress={() => navigation.navigate('Detail', { item, category: item.status })}
+        >
+          <Image source={{ uri: item.image }} style={styles.thumbnail} />
+          <View style={styles.info}>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.location}>
+              <Ionicons name="location-outline" size={RFValue(10)} color="#aaa" /> {item.location}
+            </Text>
+            <View style={styles.row}>
+              <Text style={styles.price}>
+                {item.price} {item.currency} {suffix}
+              </Text>
+              <Text style={styles.dot}> • </Text>
+              <Text style={styles.rating}>{item.rating}</Text>
+              <Ionicons name="star" size={RFValue(10)} color="#FFC529" />
+              <Text style={styles.dot}> • </Text>
+              <Text style={styles.type}>{item.type}</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+    );
+  };
+
+  const renderHiddenItem = ({ item }) => (
+    <View style={styles.rowBack}>
+      <TouchableOpacity
+      activeOpacity={1}
+        style={styles.backRightBtn}
+        onPress={() => {
+          setSelectedItem(item);
+          setModalVisible(true);
+        }}
+      >
+        <Ionicons name="trash-bin" size={RFValue(20)} color="#fff" style={{marginRight:RFValue(3)}}/>
+        <Text style={{ color: '#fff', fontSize: RFValue(10) }}>Delete</Text>
+      </TouchableOpacity>
+    </View>
   );
 
   return (
-    <SafeAreaView style={styles.mainContainer}>
-      <View style={styles.container}>
-      <Text style={styles.heading}>Your Favorites</Text>
-
-      {favorites.length > 0 ? (
-        <FlatList
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.header}>Favorites</Text>
+      {favorites.length === 0 ? (
+        <View style={styles.emptyContainer}>
+          <Ionicons name="heart-outline" size={RFValue(60)} color="#FF6B6B" />
+          <Text style={styles.emptyText}>No Favorites at the momemt! Add some by exploring now.</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Home')}
+            style={styles.exploreButton}
+          >
+            <Text style={styles.exploreText}>Explore now</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <SwipeListView
           data={favorites}
           keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={styles.list}
           renderItem={renderItem}
+          renderHiddenItem={renderHiddenItem}
+          rightOpenValue={-75}
         />
-      ) : (
-        <Text style={styles.emptyText}>No favorites yet.</Text>
       )}
-      </View>
+      <CustomModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        onConfirm={handleRemove}
+        message="Are you sure you want to remove this from favorites?"
+      />
     </SafeAreaView>
   );
 };
 
-export default FavoriteScreen;
+export default FavoritesScreen;
 
 const styles = StyleSheet.create({
-  mainContainer:{
-    flex:1
-  },
   container: {
     flex: 1,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 10 : 0,
     backgroundColor: '#fff',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    paddingHorizontal: RFValue(20),
+    padding: RFValue(16),
   },
-  heading: {
+  header: {
     fontSize: RFValue(18),
     fontWeight: 'bold',
-    marginVertical: RFValue(20),
+    marginBottom: RFValue(15),
   },
   card: {
     flexDirection: 'row',
-    backgroundColor: '#f5f5f5',
-    borderRadius: RFValue(10),
+    backgroundColor: '#F8F8F8',
+    borderRadius: RFValue(12),
+    marginBottom: RFValue(12),
     padding: RFValue(10),
-    marginBottom: RFValue(10),
     alignItems: 'center',
   },
-  image: {
-    width: RFValue(80),
-    height: RFValue(80),
+  thumbnail: {
+    width: RFValue(60),
+    height: RFValue(60),
     borderRadius: RFValue(10),
     marginRight: RFValue(10),
   },
@@ -96,23 +152,81 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: RFValue(14),
+    fontSize: RFValue(12),
     fontWeight: 'bold',
   },
   location: {
-    fontSize: RFValue(12),
-    color: '#666',
-    marginTop: RFValue(4),
+    fontSize: RFValue(10),
+    color: '#888',
+    marginVertical: RFValue(2),
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   price: {
-    fontSize: RFValue(14),
+    fontSize: RFValue(10),
     color: '#00C48C',
-    marginTop: RFValue(6),
+    fontWeight: 'bold',
+  },
+  dot: {
+    marginHorizontal: 5,
+    fontSize: RFValue(10),
+    color: '#aaa',
+  },
+  rating: {
+    fontSize: RFValue(10),
+    color: '#FFC529',
+    marginRight: RFValue(2),
+  },
+  type: {
+    fontSize: RFValue(10),
+    color: '#00C48C',
+    fontWeight: '500',
+  },
+  heart: {
+    marginLeft: RFValue(8),
+  },
+  emptyContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   emptyText: {
     fontSize: RFValue(14),
     color: '#888',
-    textAlign: 'center',
-    marginTop: RFValue(50),
+    marginTop: RFValue(10),
+  },
+  exploreButton: {
+    marginTop: RFValue(15),
+    backgroundColor: '#00C48C',
+    paddingHorizontal: RFValue(20),
+    paddingVertical: RFValue(8),
+    borderRadius: RFValue(20),
+  },
+  exploreText: {
+    color: '#fff',
+    fontSize: RFValue(14),
+    fontWeight: 'bold',
+  },
+  rowBack: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    borderRadius: RFValue(12),
+    marginBottom: RFValue(12),
+    paddingRight: RFValue(15),
+  },
+  backRightBtn: {
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    width: RFValue(75),
+    backgroundColor: '#FF6B6B',
+    paddingRight:RFValue(8),
+    borderTopRightRadius: RFValue(12),
+    borderBottomRightRadius: RFValue(12),
+    height: '100%',
   },
 });

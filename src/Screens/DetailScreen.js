@@ -3,29 +3,30 @@ import {
   View,
   Text,
   Image,
+  FlatList,
   StyleSheet,
-  ScrollView,
   TouchableOpacity,
   SafeAreaView,
   StatusBar,
   Platform,
+  Dimensions,
+  ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { addFavorite, removeFavorite, isFavorited } from '../common/storage';
 
-import {
-  addFavorite,
-  removeFavorite,
-  isFavorited,
-} from '../common/storage';
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const DetailScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
-  const { item } = route.params;
+  const { item, category } = route.params;
 
   const [favorite, setFavorite] = useState(false);
+
+  const imagesToShow = item.images && item.images.length > 0 ? item.images : [item.image];
 
   useEffect(() => {
     const checkFavorite = async () => {
@@ -41,59 +42,59 @@ const DetailScreen = () => {
     } else {
       await addFavorite(item);
     }
-    setFavorite((prev) => !prev);
+    setFavorite(prev => !prev);
   };
 
   return (
     <SafeAreaView style={styles.container}>
+      <FlatList
+        data={imagesToShow}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(uri, idx) => uri + idx}
+    renderItem={({ item }) => (
+      <View style={styles.carouselImage}>
+
+        <Image  source={{ uri: item }}  style={{width:"100%", height:'100%'}}/>
+      </View>
+        )}
+      />
+
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={[styles.iconButton, { left: RFValue(20) }]}
+      >
+        <Ionicons name="chevron-back" size={RFValue(20)} color="#fff" />
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={toggleFavorite}
+        style={[styles.iconButton, { right: RFValue(20) }]}
+      >
+        <Image
+          resizeMode="contain"
+          source={require('../assets/images/LikeImg.png')}
+          style={[styles.iconImage, { tintColor: favorite ? 'red' : 'white' }]}
+        />
+      </TouchableOpacity>
+
       <ScrollView>
-        <View>
-          <Image source={{ uri: item.agent.image }} style={styles.mainImage} />
-
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={[styles.iconButton, { left: RFValue(20) }]}
-          >
-            <Image
-              resizeMode="contain"
-              source={require('../assets/images/goBack.png')}
-              style={styles.iconImage}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={toggleFavorite}
-            style={[styles.iconButton, { right: RFValue(20) }]}
-          >
-            <Image
-              resizeMode="contain"
-              source={require('../assets/images/LikeImg.png')}
-              style={[
-                styles.iconImage,
-                { tintColor: favorite ? 'red' : 'white' },
-              ]}
-            />
-          </TouchableOpacity>
-        </View>
-
         <View style={styles.content}>
           <Text style={styles.title}>{item.title}</Text>
 
           <Text style={styles.location}>
-            <Ionicons name="location-outline" size={RFValue(14)} />{' '}
-            {item.location}
+            <Ionicons name="location-outline" size={RFValue(14)} /> {item.location}
           </Text>
 
-          <Text style={styles.price}>{item.price}</Text>
+          <Text style={styles.price}>
+            {item.price} {item.currency} {category === 'rent' ? '/month' : ''}
+          </Text>
 
           <View style={styles.features}>
             {item.features.map((f, i) => (
               <View key={i} style={styles.featureItem}>
-                <Ionicons
-                  name={f.icon}
-                  size={RFValue(20)}
-                  color="#00C48C"
-                />
+                <Ionicons name={f.icon} size={RFValue(20)} color="#00C48C" />
                 <Text style={styles.featureText}>{f.label}</Text>
               </View>
             ))}
@@ -126,9 +127,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
-  mainImage: {
-    width: '100%',
+  carouselImage: {
+    width: SCREEN_WIDTH,
     height: RFValue(220),
+    resizeMode: 'cover',
   },
   iconButton: {
     position: 'absolute',
@@ -138,6 +140,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: RFValue(6),
     borderRadius: RFValue(20),
+    zIndex: 1,
   },
   iconImage: {
     width: RFValue(20),

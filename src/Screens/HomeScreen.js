@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   SafeAreaView,
   View,
@@ -9,48 +9,49 @@ import {
   TextInput,
   FlatList,
   Platform,
+  ScrollView,
+  StatusBar,
 } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 import ListingCard from '../component/ListingCard';
+import mockRentListings from '../data/final_mockRentListings.json';
+import mockSoldListings from '../data/final_mockSoldListings.json';
 
-const categories = [
-  { id: 1, label: 'Home', icon: 'home-outline' },
-  { id: 2, label: 'Villa', icon: 'business-outline' },
-  { id: 3, label: 'Apartment', icon: 'building-outline' },
+const allListings = [...mockRentListings, ...mockSoldListings];
+const uniqueTypes = [...new Set(allListings.map(item => item.type))];
+
+const generatedCategories = [
+  { id: -1, label: 'All', icon: 'grid-outline' },
+  ...uniqueTypes.map((type, idx) => ({
+    id: idx,
+    label: type,
+    icon: 'home-outline', // customize as needed
+  })),
 ];
-
-const mockListings = Array.from({ length: 5 }, (_, i) => ({
-  id: i + 1,
-  title: 'Plaza Avenue Building',
-  location: 'Balikpapan, Indonesia',
-  price: '$3100/year',
-  rating: 5.0,
-  type: 'Home',
-  image: 'https://via.placeholder.com/180x100',
-  description:
-    'Plaza Avenue, offer to our clients exceptional and professional service...',
-  features: [
-    { icon: 'resize-outline', label: '40 x 80 m' },
-    { icon: 'bed-outline', label: '4 Bedroom' },
-    { icon: 'water-outline', label: '4 Bathroom' },
-    { icon: 'car-outline', label: 'Parking' },
-  ],
-  agent: {
-    name: 'Sebastian Vettel',
-    image: 'https://i.pravatar.cc/100?u=' + i,
-  },
-}));
 
 const HomeScreen = () => {
   const navigation = useNavigation();
 
+  const [searchText, setSearchText] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const filterBySearchAndCategory = (listings) => {
+    return listings.filter(item =>
+      (selectedCategory === 'All' || item.type === selectedCategory) &&
+      item.title.toLowerCase().includes(searchText.toLowerCase())
+    );
+  };
+
+  const filteredRentListings = useMemo(() => filterBySearchAndCategory(mockRentListings), [searchText, selectedCategory]);
+  const filteredSoldListings = useMemo(() => filterBySearchAndCategory(mockSoldListings), [searchText, selectedCategory]);
+
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <View style={styles.container}>
-        
+      <ScrollView style={styles.container}>
+      
         <View style={styles.header}>
           <View>
             <Text style={styles.heading}>Find your best</Text>
@@ -62,58 +63,87 @@ const HomeScreen = () => {
           />
         </View>
 
-
         <View style={styles.searchWrapper}>
           <Ionicons name="search-outline" size={RFValue(18)} color="#888" />
           <TextInput
             placeholder="Search..."
             style={styles.searchInput}
             placeholderTextColor="#888"
+            value={searchText}
+            onChangeText={setSearchText}
           />
         </View>
-        <View>
 
         <FlatList
-          data={categories}
+          data={generatedCategories}
           keyExtractor={(item) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.categories}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.categoryBtn}>
+            <TouchableOpacity
+              style={[
+                styles.categoryBtn,
+                selectedCategory === item.label && { backgroundColor: '#DFF6EF' }
+              ]}
+              onPress={() => setSelectedCategory(item.label)}
+            >
               <Ionicons name={item.icon} size={RFValue(18)} color="#00C48C" />
               <Text style={styles.categoryText}>{item.label}</Text>
             </TouchableOpacity>
           )}
-          />
-          </View>
-
-        <View style={styles.popularHeader}>
-          <Text style={styles.sectionTitle}>Popular</Text>
-          <TouchableOpacity>
-            <Ionicons name="chevron-forward-outline" size={RFValue(18)} />
-          </TouchableOpacity>
-        </View>
-
-        <FlatList
-          data={mockListings}
-          keyExtractor={(item) => item.id.toString()}
-          horizontal
-          scrollEnabled={true}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.listings}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity
-              style={{
-                marginRight: RFValue(index === mockListings.length - 1 ? 0 : 15),
-              }}
-              onPress={() => navigation.navigate('Detail', { item })}
-            >
-              <ListingCard {...item} />
-            </TouchableOpacity>
-          )}
         />
-      </View>
+
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>For Rent</Text>
+        </View>
+        {filteredRentListings.length ? (
+          <FlatList
+            data={filteredRentListings}
+            keyExtractor={(item) => item.id.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.listings}
+            renderItem={({ item, index }) => (
+              <TouchableOpacity
+                style={{
+                  marginRight: RFValue(index === filteredRentListings.length - 1 ? 0 : 15),
+                }}
+                onPress={() => navigation.navigate('Detail', { item, category: 'rent' })}
+              >
+                <ListingCard {...item} category="rent" />
+              </TouchableOpacity>
+            )}
+          />
+        ) : (
+          <Text style={styles.emptyText}>Not at the moment</Text>
+        )}
+
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>For Sale</Text>
+        </View>
+        {filteredSoldListings.length ? (
+          <FlatList
+            data={filteredSoldListings}
+            keyExtractor={(item) => item.id.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.listings}
+            renderItem={({ item, index }) => (
+              <TouchableOpacity
+                style={{
+                  marginRight: RFValue(index === filteredSoldListings.length - 1 ? 0 : 15),
+                }}
+                onPress={() => navigation.navigate('Detail', { item, category: 'sale' })}
+              >
+                <ListingCard {...item} category="sale" />
+              </TouchableOpacity>
+            )}
+          />
+        ) : (
+          <Text style={styles.emptyText}>Not at the moment</Text>
+        )}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -128,7 +158,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: RFValue(20),
-    paddingTop:Platform.OS=='android'&& RFValue(15)
+    paddingBottom: Platform.OS === 'android' ? RFValue(25) : 0,
+    marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   header: {
     flexDirection: 'row',
@@ -169,7 +200,7 @@ const styles = StyleSheet.create({
     borderColor: '#E0F3EB',
     backgroundColor: '#F7FCFB',
     paddingHorizontal: RFValue(15),
-    paddingVertical:RFValue(6),
+    paddingVertical: RFValue(6),
     borderRadius: RFValue(20),
     marginRight: RFValue(10),
   },
@@ -179,17 +210,25 @@ const styles = StyleSheet.create({
     color: '#00C48C',
     fontWeight: '500',
   },
-  sectionTitle: {
-    fontSize: RFValue(16),
-    fontWeight: 'bold',
-  },
-  popularHeader: {
+  sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: RFValue(10),
+    marginTop: RFValue(10),
+  },
+  sectionTitle: {
+    fontSize: RFValue(16),
+    fontWeight: 'bold',
   },
   listings: {
     paddingBottom: RFValue(10),
+  },
+  emptyText: {
+    fontSize: RFValue(14),
+    color: '#999',
+    fontStyle: 'italic',
+    paddingLeft: RFValue(10),
+    marginBottom: RFValue(10),
   },
 });

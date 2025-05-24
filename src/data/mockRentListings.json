@@ -1,0 +1,142 @@
+[
+  {
+    "id": 452164129,
+    "title": "1101 Frederica St W APT B",
+    "location": "Thunder Bay, ON",
+    "price": "$3200 CAD/year",
+    "rating": 5.0,
+    "type": "Apartment",
+    "image": "https://photos.zillowstatic.com/fp/2c5b747da65c7f15ef06e64e753e4f09-p_h.jpg",
+    "description": "Beautiful 3-Bedroom Rental | Available June 1\n\nStep into comfort and convenience with this stunning 3-bedroom, 2-bathroom home offering 1,225 sq ft of modern living space. Located in a peaceful neighbourhood, this bright and spacious unit is perfect for families, professionals, or anyone seeking high-quality living.\n\n Features:\n\n1,225 sq ft of beautifully finished space\n\n3 generous bedrooms and 2 full bathrooms\n\nOpen-concept living/dining/kitchen with plenty of natural light\n\nIn-unit laundry\n\nPremium finishes throughout\n\n Extras Included:\n\n$3200/month \n\nSnow removal and grass cutting included no maintenance hassles\n\nParking available\n\n Available June 15\nDon't miss this opportunity to live in a turn-key home that blends comfort, space, and stress-free living.\n\nContact us today to schedule a viewing or apply!",
+    "features": [
+      {
+        "icon": "bed-outline",
+        "label": "3 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "2 Bathroom"
+      },
+      {
+        "icon": "resize-outline",
+        "label": "1225 sqft"
+      }
+    ],
+    "agent": {
+      "name": "Guardian Rental Management Inc.",
+      "image": "https://i.pravatar.cc/100?u=452164129"
+    }
+  },
+  {
+    "id": 452106804,
+    "title": "325 Archibald St S #1A",
+    "location": "Thunder Bay, ON",
+    "price": "$1300 CAD/year",
+    "rating": 5.0,
+    "type": "Apartment",
+    "image": "https://photos.zillowstatic.com/fp/5c20b1c51657e1673a945aef786e8bf7-p_h.jpg",
+    "description": "McKellar Place is a senior living apartment community designed for independent older adults, offering two nutritious meals daily along with a complimentary breakfastall in a comfortable and supportive environment. Each studio at McKellar Place rents for $1,300 per month, which equates to $4.01 per square foot. Additionally, there is a meal plan that costs $700 per month. Renters who move in by June 1, 2025 will receive one month of complimentary meals. Thank you.",
+    "features": [
+      {
+        "icon": "bed-outline",
+        "label": "1 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "1 Bathroom"
+      },
+      {
+        "icon": "resize-outline",
+        "label": "None sqft"
+      }
+    ],
+    "agent": {
+      "name": null,
+      "image": "https://i.pravatar.cc/100?u=452106804"
+    }
+  },
+  {
+    "id": 449625731,
+    "title": "337 Grenville Ave UNIT 10",
+    "location": "Thunder Bay, ON",
+    "price": "$1400 CAD/year",
+    "rating": 5.0,
+    "type": "Apartment",
+    "image": "https://photos.zillowstatic.com/fp/5054eed4637aae29047bee1bcd6113e7-p_h.jpg",
+    "description": "Cozy 1-Bedroom Apartment in Current River $1400/month! \n\nLooking for your next home sweet home? This charming 1-bedroom, 1-bathroom apartment is available right away and has everything you need!\n\n Apartment Highlights:\n\n Rent: $1400/month\n\n 1 spacious bedroom\n\n 1 bathroom\n\n Gas & water INCLUDED\n\n Hydro separate\n\n Dogs negotiable bring your furry friend!\n\n Laundry in building convenience at your doorstep\n\n Parking not included\n\n Location!\nLocated in the desirable Current River neighborhood, right by Boulevard Lake close to local shops, parks, and more!\n\nReady to move in? Contact us now to schedule a viewing and make this cozy spot your new home!",
+    "features": [
+      {
+        "icon": "bed-outline",
+        "label": "1 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "1 Bathroom"
+      },
+      {
+        "icon": "resize-outline",
+        "label": "900 sqft"
+      }
+    ],
+    "agent": {
+      "name": "Rent Panda",
+      "image": "https://i.pravatar.cc/100?u=449625731"
+    }
+  },
+  {
+    "id": 345203890,
+    "title": "448 Hodder Ave",
+    "location": "Thunder Bay, ON",
+    "price": "$2200 CAD/year",
+    "rating": 5.0,
+    "type": "Apartment",
+    "image": "https://photos.zillowstatic.com/fp/183fef2e75efde83a4ca4573ad6482f0-p_h.jpg",
+    "description": "Welcome to our charming 3-bedroom, 1-bathroom duplex rental, offering a cozy yet spacious layout perfect for comfortable living. This inviting home features a well-appointed kitchen, a bright living area for relaxation, and three bedrooms ideal for restful nights. With its convenient location and cozy atmosphere, this duplex promises to be the perfect sanctuary for you and your loved ones. Inclusive utilities up to a reasonable cap.",
+    "features": [
+      {
+        "icon": "bed-outline",
+        "label": "3 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "1 Bathroom"
+      },
+      {
+        "icon": "resize-outline",
+        "label": "900 sqft"
+      }
+    ],
+    "agent": {
+      "name": "Guardian Rental Management Inc.",
+      "image": "https://i.pravatar.cc/100?u=345203890"
+    }
+  },
+  {
+    "id": 450408826,
+    "title": "531 Luci Ct",
+    "location": "Thunder Bay, ON",
+    "price": "$1900 CAD/year",
+    "rating": 5.0,
+    "type": "Apartment",
+    "image": "https://photos.zillowstatic.com/fp/d9d4f1e45e87fb35bf4f25fd40c1101e-p_h.jpg",
+    "description": "Newly Renovated 3 Bedroom Main Floor Unit Bright & Beautiful! \n\n Location: 531 Luci crt\n Rent: $1900/month + 70% utilities (heat, water & hydro)\n Bedrooms: 3\n Bathroom: 1\n\nWelcome to your new home at 531 Luci Court!\nThis stunning main floor unit has been freshly renovated and is ready for you to move in. \n\n Features include: In-unit laundry\n Dishwasher for easy clean-up\n Tons of natural light throughout\n Cozy fireplace perfect for chilly nights\n Private entrance\n Access to yard\n\nPerfect for a small family, professionals, or roommates looking for a spacious, bright, and comfortable place to call home.\n\nPlease make sure your tenant profile is complete and reach out to us to schedule a showing!",
+    "features": [
+      {
+        "icon": "bed-outline",
+        "label": "3 Bedroom"
+      },
+      {
+        "icon": "water-outline",
+        "label": "1 Bathroom"
+      },
+      {
+        "icon": "resize-outline",
+        "label": "1000 sqft"
+      }
+    ],
+    "agent": {
+      "name": "Rent Panda",
+      "image": "https://i.pravatar.cc/100?u=450408826"
+    }
+  }
+]
