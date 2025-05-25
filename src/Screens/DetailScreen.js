@@ -30,10 +30,12 @@ const DetailScreen = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const imagesToShow = item.images && item.images.length > 0 ? item.images : [item.image];
+  // console.log("imagesToShow",imagesToShow);
 
   const validImages = imagesToShow.filter(
     uri => typeof uri === 'string' && uri.length > 0
   );
+  // console.log("validImages",validImages);
 
   useEffect(() => {
     const checkFavorite = async () => {
@@ -159,7 +161,7 @@ const DetailScreen = () => {
               <Text style={styles.agentName}>{item.agent.name}</Text>
               <Text style={styles.agentRole}>Agent</Text>
             </View>
-            <TouchableOpacity style={styles.messageBtn}>
+            <TouchableOpacity style={styles.messageBtn} onPress={() => navigation.navigate('MessageScreen', { agent: item.agent, property: item })}>
               <Text style={styles.messageText}>Message</Text>
             </TouchableOpacity>
           </View>

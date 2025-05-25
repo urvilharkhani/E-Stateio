@@ -16,7 +16,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import { getChatForProperty, saveChatForProperty } from '../common/chatStorage';
+// import { getChatForProperty, saveChatForProperty } from '../common/chatStorage';
+import { saveMessage, getMessagesForProperty } from '../common/sqlliteService';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // For logged in email
 
 const MessageScreen = () => {
   const { agent, property } = useRoute().params;
@@ -29,24 +31,64 @@ const MessageScreen = () => {
   const [messages, setMessages] = useState([]);
   const hasBotReplied = useRef(false);
 
-  useEffect(() => {
-    const loadMessages = async () => {
-      const stored = await getChatForProperty(property.id);
-      if (stored.length > 0) {
-        setMessages(stored);
-      } else {
-        const systemMsg = {
-          id: '0',
-          text: `You're now connected with ${agent.name}.`,
-          sender: 'system',
-          timestamp: new Date().toISOString(),
-        };
-        setMessages([systemMsg]);
-        saveChatForProperty(property.id, [systemMsg]);
-      }
-    };
-    loadMessages();
-  }, [property.id]);
+  // useEffect(() => {
+  //   const loadMessages = async () => {
+  //     const stored = await getChatForProperty(property.id);
+  //     if (stored.length > 0) {
+  //       setMessages(stored);
+  //     } else {
+  //       const systemMsg = {
+  //         id: '0',
+  //         text: `You're now connected with ${agent.name}.`,
+  //         sender: 'system',
+  //         timestamp: new Date().toISOString(),
+  //       };
+  //       setMessages([systemMsg]);
+  //       saveChatForProperty(property.id, [systemMsg]);
+  //     }
+  //   };
+  //   loadMessages();
+  // }, [property.id]);
+// useEffect(() => {
+//  const loadMessages = async () => {
+//   const rows = await getMessagesForProperty(property.id);
+//   if (rows.length > 0) {
+//     setMessages(rows);
+//   } else {
+//     const systemMsg = {
+//       id: '0',
+//       property_id: property.id.toString(),
+//       sender: 'system',
+//       text: `You're now connected with ${agent.name}.`,
+//       timestamp: new Date().toISOString(),
+//     };
+//     await saveMessage(systemMsg);
+//     setMessages([systemMsg]);
+//   }
+// };
+
+//   loadMessages();
+// }, [property.id]);
+useEffect(() => {
+  const loadMessages = async () => {
+    const rows = await getMessagesForProperty(property.id);
+    if (rows.length > 0) {
+      setMessages(rows);
+    } else {
+      const systemMsg = {
+        id: Date.now().toString() + '_system',
+        property_id: property.id.toString(),
+        sender: 'system',
+        text: `You're now connected with ${agent.name}.`,
+        timestamp: new Date().toISOString(),
+      };
+      await saveMessage(systemMsg);
+      setMessages([systemMsg]);
+    }
+  };
+
+  loadMessages();
+}, [property.id]);
 
   useEffect(() => {
     const showSub = Keyboard.addListener('keyboardDidShow', e =>
@@ -62,56 +104,102 @@ const MessageScreen = () => {
     };
   }, []);
 
-  const sendMessage = () => {
-    if (!inputText.trim()) return;
+  // const sendMessage = () => {
+  //   if (!inputText.trim()) return;
 
-    const newMessage = {
-      id: Date.now().toString(),
-      text: inputText,
-      sender: 'user',
-      timestamp: new Date().toISOString(),
-    };
+  //   const newMessage = {
+  //     id: Date.now().toString(),
+  //     text: inputText,
+  //     sender: 'user',
+  //     timestamp: new Date().toISOString(),
+  //   };
 
-    const updated = [...messages, newMessage];
-    setMessages(updated);
-    saveChatForProperty(property.id, updated);
-    setInputText('');
+  //   const updated = [...messages, newMessage];
+  //   setMessages(updated);
+  //   saveChatForProperty(property.id, updated);
+  //   setInputText('');
 
-    if (!hasBotReplied.current) {
-      hasBotReplied.current = true;
-      setIsTyping(true);
+  //   if (!hasBotReplied.current) {
+  //     hasBotReplied.current = true;
+  //     setIsTyping(true);
 
-      setTimeout(() => {
-        const botMessage = {
-          id: Date.now().toString() + '_bot',
-          text: `${agent.name} will be with you shortly.`,
-          sender: 'bot',
-          timestamp: new Date().toISOString(),
-        };
-        const afterBot = [...updated, botMessage];
-        setMessages(afterBot);
-        saveChatForProperty(property.id, afterBot);
-        setIsTyping(false);
-      }, 3000);
-    }
+  //     setTimeout(() => {
+  //       const botMessage = {
+  //         id: Date.now().toString() + '_bot',
+  //         text: `${agent.name} will be with you shortly.`,
+  //         sender: 'bot',
+  //         timestamp: new Date().toISOString(),
+  //       };
+  //       const afterBot = [...updated, botMessage];
+  //       setMessages(afterBot);
+  //       saveChatForProperty(property.id, afterBot);
+  //       setIsTyping(false);
+  //     }, 3000);
+  //   }
 
-    setTimeout(() => {
-      const agentMessage = {
-        id: Date.now().toString() + '_followup',
-        text: `Great! Ask any questions you have about the property.`,
-        sender: 'agent',
-        timestamp: new Date().toISOString(),
-      };
+  //   setTimeout(() => {
+  //     const agentMessage = {
+  //       id: Date.now().toString() + '_followup',
+  //       text: `Great! Ask any questions you have about the property.`,
+  //       sender: 'agent',
+  //       timestamp: new Date().toISOString(),
+  //     };
 
-      setMessages(prev => {
-        const updatedMessages = [...prev, agentMessage];
-        saveChatForProperty(property.id, updatedMessages);
-        return updatedMessages;
-      });
-    }, 30000);
+  //     setMessages(prev => {
+  //       const updatedMessages = [...prev, agentMessage];
+  //       saveChatForProperty(property.id, updatedMessages);
+  //       return updatedMessages;
+  //     });
+  //   }, 30000);
+  // };
+
+  const sendMessage = async () => {
+  if (!inputText.trim()) return;
+
+  const loggedInEmail = await AsyncStorage.getItem('@logged_in_email');
+  const userMessage = {
+    id: Date.now().toString(),
+    property_id: property.id.toString(),
+    sender: 'user',
+    text: inputText,
+    timestamp: new Date().toISOString(),
   };
 
-  const renderItem = ({ item }) => {
+  await saveMessage(userMessage);
+  setMessages(prev => [...prev, userMessage]);
+  setInputText('');
+
+  if (!hasBotReplied.current) {
+    hasBotReplied.current = true;
+    setIsTyping(true);
+
+    setTimeout(async () => {
+      const botMessage = {
+        id: Date.now().toString() + '_bot',
+        property_id: property.id.toString(),
+        sender: 'bot',
+        text: `${agent.name} will be with you shortly.`,
+        timestamp: new Date().toISOString(),
+      };
+      await saveMessage(botMessage);
+      setMessages(prev => [...prev, botMessage]);
+      setIsTyping(false);
+    }, 3000);
+  }
+
+  setTimeout(async () => {
+    const agentMessage = {
+      id: Date.now().toString() + '_followup',
+      property_id: property.id.toString(),
+      sender: 'agent',
+      text: 'Great! Ask any questions you have about the property.',
+      timestamp: new Date().toISOString(),
+    };
+    await saveMessage(agentMessage);
+    setMessages(prev => [...prev, agentMessage]);
+  }, 30000);
+};
+const renderItem = ({ item }) => {
     if (item.sender === 'system') {
       return (
         <View style={styles.systemMessageWrapper}>

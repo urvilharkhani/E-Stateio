@@ -17,9 +17,10 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getUserProfile } from '../common/sqlliteService';
 
 const STORAGE_KEY = '@profile_data';
-
+// console.log("STORAGE_KEY",STORAGE_KEY)
 const options = [
     { id: '1', label: 'Personal data', icon: 'person-outline', screen: 'PersonalData' },
     { id: '2', label: 'Settings', icon: 'settings-outline' },
@@ -36,28 +37,23 @@ export default function ProfileScreen() {
     const uri = require('../assets/images/defaultProfileIcon.png');
     const [avatar, setAvatar] = useState(uri);
 
-    useFocusEffect(
-        useCallback(() => {
-            (async () => {
-                const data = await AsyncStorage.getItem(STORAGE_KEY);
-                if (data) {
-                    const parsed = JSON.parse(data);
-                    setName(parsed.name || '');
-                    setLocation(parsed.address || '');
-                    if (parsed.image) setAvatar(parsed.image);
-                    else {
-                        const stored = await AsyncStorage.getItem(STORAGE_KEY);
-                        let data = stored ? JSON.parse(stored) : {};
-                        data.image = uri;
-                        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-                        setAvatar(uri);
-                    }
-                } else {
-                    setAvatar(uri);
-                }
-            })();
-        }, [])
-    );
+    // reload profile each time screen focuses
+   useFocusEffect(
+  useCallback(() => {
+    (async () => {
+      const email = await AsyncStorage.getItem('@logged_in_email');
+      if (!email) return;
+
+      const profile = await getUserProfile(email);
+      if (profile) {
+        setName(profile.name || '');
+        setLocation('Thunder Bay, ON'); // or profile.address if you store it
+        setAvatar('https://i.pravatar.cc/100?img=3'); // optionally use from DB
+      }
+    })();
+  }, [])
+);
+
 
     const handleLogout = () => {
         Alert.alert(
@@ -68,10 +64,11 @@ export default function ProfileScreen() {
                 {
                     text: 'Log Out',
                     style: 'destructive',
-                    onPress: async () => {
-                        await AsyncStorage.removeItem(STORAGE_KEY);
-                        navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
-                    }
+                   onPress: async () => {
+  await AsyncStorage.removeItem('@logged_in_email');
+  navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
+}
+
                 }
             ]
         );

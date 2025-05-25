@@ -3,13 +3,29 @@ import * as SQLite from 'expo-sqlite';
 let dbPromise = null;
 async function getDb() {
   if (!dbPromise) {
-    dbPromise = SQLite.openDatabaseAsync('favorites.db');
+    dbPromise = SQLite.openDatabaseAsync('app_data.db');
     const db = await dbPromise;
     await db.execAsync(`
       PRAGMA journal_mode = WAL;
+      
       CREATE TABLE IF NOT EXISTS favorites (
         id TEXT PRIMARY KEY NOT NULL,
         data TEXT NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS users (
+        email TEXT PRIMARY KEY NOT NULL,
+        name TEXT NOT NULL,
+        phone TEXT NOT NULL,
+        password TEXT NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS messages (
+        id TEXT PRIMARY KEY NOT NULL,
+        property_id TEXT NOT NULL,
+        sender TEXT NOT NULL,
+        text TEXT NOT NULL,
+        timestamp TEXT NOT NULL
       );
     `);
     return db;
@@ -17,6 +33,7 @@ async function getDb() {
   return dbPromise;
 }
 
+// Favorites Logic
 export const getFavorites = async () => {
   const db = await getDb();
   const rows = await db.getAllAsync('SELECT * FROM favorites');
@@ -43,38 +60,52 @@ export const isFavorited = async (itemId) => {
   return !!row;
 };
 
-// To run a sample/test, call testDbOperations() from an async context (not at the top level).
-export async function testDbOperations() {
-  const db = await SQLite.openDatabaseAsync('test.db');
+// User Logic
+export const signUpUser = async ({ name, email, phone, password }) => {
+  const db = await getDb();
+  await db.runAsync(
+    'INSERT INTO users (email, name, phone, password) VALUES (?, ?, ?, ?)',
+    [email, name, phone, password]
+  );
+};
 
-  // Bulk queries
-  await db.execAsync(`
-    PRAGMA journal_mode = WAL;
-    CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY NOT NULL, value TEXT NOT NULL, intValue INTEGER);
-    INSERT INTO test (value, intValue) VALUES ('test1', 123);
-    INSERT INTO test (value, intValue) VALUES ('test2', 456);
-    INSERT INTO test (value, intValue) VALUES ('test3', 789);
-  `);
+export const validateUserLogin = async (email, password) => {
+  const db = await getDb();
+  const row = await db.getFirstAsync(
+    'SELECT * FROM users WHERE email = ? AND password = ?',
+    [email, password]
+  );
+  return row;
+};
 
-  // Write operation
-  const result = await db.runAsync('INSERT INTO test (value, intValue) VALUES (?, ?)', 'aaa', 100);
-  console.log(result.lastInsertRowId, result.changes);
-  await db.runAsync('UPDATE test SET intValue = ? WHERE value = ?', 999, 'aaa');
-  await db.runAsync('UPDATE test SET intValue = ? WHERE value = ?', [999, 'aaa']);
-  await db.runAsync('DELETE FROM test WHERE value = $value', { $value: 'aaa' });
+export const getUserProfile = async (email) => {
+  const db = await getDb();
+  const row = await db.getFirstAsync('SELECT * FROM users WHERE email = ?', email);
+  return row;
+};
 
-  // Single row
-  const firstRow = await db.getFirstAsync('SELECT * FROM test');
-  console.log(firstRow.id, firstRow.value, firstRow.intValue);
+export const updateUserProfile = async ({ email, name, phone }) => {
+  const db = await getDb();
+  await db.runAsync(
+    'UPDATE users SET name = ?, phone = ? WHERE email = ?',
+    [name, phone, email]
+  );
+};
 
-  // All rows
-  const allRows = await db.getAllAsync('SELECT * FROM test');
-  for (const row of allRows) {
-    console.log(row.id, row.value, row.intValue);
-  }
+// Chat Message Logic
+export const saveMessage = async ({ id, property_id, sender, text, timestamp }) => {
+  const db = await getDb();
+  await db.runAsync(
+    'INSERT INTO messages (id, property_id, sender, text, timestamp) VALUES (?, ?, ?, ?, ?)',
+    [id, property_id, sender, text, timestamp]
+  );
+};
 
-  // Cursor/iterator
-  for await (const row of db.getEachAsync('SELECT * FROM test')) {
-    console.log(row.id, row.value, row.intValue);
-  }
-}
+export const getMessagesForProperty = async (property_id) => {
+  const db = await getDb();
+  return await db.getAllAsync(
+    'SELECT * FROM messages WHERE property_id = ? ORDER BY timestamp',
+    [property_id]
+  );
+};
+export { getDb };
