@@ -28,12 +28,6 @@ const DetailScreen = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const imagesToShow = item.images && item.images.length > 0 ? item.images : [item.image];
-  console.log("imagesToShow",imagesToShow);
-
-  const validImages = imagesToShow.filter(
-    uri => typeof uri === 'string' && uri.length > 0
-  );
-  console.log("validImages",validImages);
 
   useEffect(() => {
     const checkFavorite = async () => {
@@ -55,7 +49,7 @@ const DetailScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={validImages}
+        data={imagesToShow}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}

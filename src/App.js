@@ -20,7 +20,6 @@ export default function App() {
     async function prepare() {
       try {
         await Font.loadAsync(Entypo.font);
-        await testDbOperations();
         // do something
       } catch (e) {
         console.warn(e);

@@ -43,38 +43,38 @@ export const isFavorited = async (itemId) => {
   return !!row;
 };
 
-// To run a sample/test, call testDbOperations() from an async context (not at the top level).
-export async function testDbOperations() {
-  const db = await SQLite.openDatabaseAsync('test.db');
 
-  // Bulk queries
-  await db.execAsync(`
-    PRAGMA journal_mode = WAL;
-    CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY NOT NULL, value TEXT NOT NULL, intValue INTEGER);
-    INSERT INTO test (value, intValue) VALUES ('test1', 123);
-    INSERT INTO test (value, intValue) VALUES ('test2', 456);
-    INSERT INTO test (value, intValue) VALUES ('test3', 789);
-  `);
+// export async function testDbOperations() {
+//   const db = await SQLite.openDatabaseAsync('test.db');
 
-  // Write operation
-  const result = await db.runAsync('INSERT INTO test (value, intValue) VALUES (?, ?)', 'aaa', 100);
-  console.log(result.lastInsertRowId, result.changes);
-  await db.runAsync('UPDATE test SET intValue = ? WHERE value = ?', 999, 'aaa');
-  await db.runAsync('UPDATE test SET intValue = ? WHERE value = ?', [999, 'aaa']);
-  await db.runAsync('DELETE FROM test WHERE value = $value', { $value: 'aaa' });
+//   // Bulk queries
+//   await db.execAsync(`
+//     PRAGMA journal_mode = WAL;
+//     CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY NOT NULL, value TEXT NOT NULL, intValue INTEGER);
+//     INSERT INTO test (value, intValue) VALUES ('test1', 123);
+//     INSERT INTO test (value, intValue) VALUES ('test2', 456);
+//     INSERT INTO test (value, intValue) VALUES ('test3', 789);
+//   `);
 
-  // Single row
-  const firstRow = await db.getFirstAsync('SELECT * FROM test');
-  console.log(firstRow.id, firstRow.value, firstRow.intValue);
+//   // Write operation
+//   const result = await db.runAsync('INSERT INTO test (value, intValue) VALUES (?, ?)', 'aaa', 100);
+//   console.log(result.lastInsertRowId, result.changes);
+//   await db.runAsync('UPDATE test SET intValue = ? WHERE value = ?', 999, 'aaa');
+//   await db.runAsync('UPDATE test SET intValue = ? WHERE value = ?', [999, 'aaa']);
+//   await db.runAsync('DELETE FROM test WHERE value = $value', { $value: 'aaa' });
 
-  // All rows
-  const allRows = await db.getAllAsync('SELECT * FROM test');
-  for (const row of allRows) {
-    console.log(row.id, row.value, row.intValue);
-  }
+//   // Single row
+//   const firstRow = await db.getFirstAsync('SELECT * FROM test');
+//   console.log(firstRow.id, firstRow.value, firstRow.intValue);
 
-  // Cursor/iterator
-  for await (const row of db.getEachAsync('SELECT * FROM test')) {
-    console.log(row.id, row.value, row.intValue);
-  }
-}
+//   // All rows
+//   const allRows = await db.getAllAsync('SELECT * FROM test');
+//   for (const row of allRows) {
+//     console.log(row.id, row.value, row.intValue);
+//   }
+
+//   // Cursor/iterator
+//   for await (const row of db.getEachAsync('SELECT * FROM test')) {
+//     console.log(row.id, row.value, row.intValue);
+//   }
+// }
