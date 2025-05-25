@@ -53,11 +53,11 @@ const DetailScreen = () => {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         keyExtractor={(uri, idx) => uri + idx}
-    renderItem={({ item }) => (
-      <View style={styles.carouselImage}>
+        renderItem={({ item }) => (
+          <View style={styles.carouselImage}>
 
-        <Image  source={{ uri: item }}  style={{width:"100%", height:'100%'}}/>
-      </View>
+            <Image source={{ uri: item }} style={{ width: "100%", height: '100%' }} />
+          </View>
         )}
       />
 
@@ -95,7 +95,9 @@ const DetailScreen = () => {
             {item.features.map((f, i) => (
               <View key={i} style={styles.featureItem}>
                 <Ionicons name={f.icon} size={RFValue(20)} color="#00C48C" />
-                <Text style={styles.featureText}>{f.label}</Text>
+                <Text style={styles.featureText}>
+                  {f.label && f.label.toLowerCase().includes('none') ? 'Not Available' : f.label}
+                </Text>
               </View>
             ))}
           </View>
