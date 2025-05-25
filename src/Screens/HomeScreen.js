@@ -28,7 +28,7 @@ const generatedCategories = [
   ...uniqueTypes.map((type, idx) => ({
     id: idx,
     label: type,
-    icon: 'home-outline', // customize as needed
+    icon: 'home-outline',
   })),
 ];
 

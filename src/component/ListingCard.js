@@ -29,15 +29,16 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 //         <Text style={styles.price}>
 //           <Text style={styles.priceMain}>{formattedPrice}</Text>
-//           <Text style={styles.priceSub}>{suffix}</Text>
-//         </Text>
-//       </View>
-//     </View>
-//   );
-// };
 const ListingCard = ({ title, image, location, price, rating, type, category, currency }) => {
-  const formattedPrice = `${price} ${currency}`;
+  const formattedPrice = `${formatPrice(price)} ${currency}`;
   const suffix = category === 'rent' ? '/month' : '';
+
+  function formatPrice(price) {
+    if (price >= 1000) {
+      return (price / 1000).toFixed(price % 1000 === 0 ? 0 : 1) + 'k';
+    }
+    return price.toString();
+  }
 
   return (
     <View style={styles.card}>
