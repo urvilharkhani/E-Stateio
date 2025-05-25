@@ -39,6 +39,13 @@ const FavoritesScreen = () => {
     }
   };
 
+  function formatPrice(price) {
+    if (price >= 1000) {
+      return (price / 1000).toFixed(price % 1000 === 0 ? 0 : 1) + 'k';
+    }
+    return price.toString();
+  }
+
   const renderItem = ({ item }) => {
     const suffix = item.status === 'rent' ? '/month' : '';
     return (
@@ -56,7 +63,7 @@ const FavoritesScreen = () => {
             </Text>
             <View style={styles.row}>
               <Text style={styles.price}>
-                {item.price} {item.currency} {suffix}
+                {formatPrice(item.price)} {item.currency} {suffix}
               </Text>
               <Text style={styles.dot}> • </Text>
               <Text style={styles.rating}>{item.rating}</Text>
