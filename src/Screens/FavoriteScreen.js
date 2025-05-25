@@ -12,9 +12,11 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { getFavorites, removeFavorite } from '../common/storage';
+// import { getFavorites, removeFavorite } from '../common/storage';
 import CustomModal from '../component/CustomModal';
 import { SwipeListView } from 'react-native-swipe-list-view';
+// import { getFavorites, removeFavorite } from '../common/firebaseService';
+import { getFavorites, removeFavorite } from '../common/sqlliteService';
 
 const FavoritesScreen = () => {
   const [favorites, setFavorites] = useState([]);
@@ -39,6 +41,13 @@ const FavoritesScreen = () => {
     }
   };
 
+  function formatPrice(price) {
+    if (price >= 1000) {
+      return (price / 1000).toFixed(price % 1000 === 0 ? 0 : 1) + 'k';
+    }
+    return price.toString();
+  }
+
   const renderItem = ({ item }) => {
     const suffix = item.status === 'rent' ? '/month' : '';
     return (
@@ -56,7 +65,7 @@ const FavoritesScreen = () => {
             </Text>
             <View style={styles.row}>
               <Text style={styles.price}>
-                {item.price} {item.currency} {suffix}
+                {formatPrice(item.price)} {item.currency} {suffix}
               </Text>
               <Text style={styles.dot}> • </Text>
               <Text style={styles.rating}>{item.rating}</Text>
@@ -163,6 +172,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+    flexWrap: 'wrap'
   },
   price: {
     fontSize: RFValue(10),

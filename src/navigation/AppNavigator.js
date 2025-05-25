@@ -20,6 +20,8 @@ function MainTabs() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
+        tabBarActiveTintColor: '#00C48C',
+        tabBarInactiveTintColor: '#8e8e93',
         tabBarIcon: ({ color, size }) => {
           let icon;
 
@@ -29,9 +31,6 @@ function MainTabs() {
               break;
             case 'Favorites':
               icon = 'heart-outline';
-              break;
-            case 'Messages':
-              icon = 'chatbubble-outline';
               break;
             case 'Profile':
               icon = 'person-outline';
@@ -44,7 +43,6 @@ function MainTabs() {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Favorites" component={FavoriteScreen} />
-
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
@@ -56,10 +54,10 @@ export default function AppNavigator() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="MainTabs" component={MainTabs} />
         <Stack.Screen name="Detail" component={DetailScreen} />
-      <Stack.Screen name="PersonalData" component={PersonalDataScreen} />
+        <Stack.Screen name="PersonalData" component={PersonalDataScreen} />
      <Stack.Screen name="MessageScreen" component={MessageScreen} />
      <Stack.Screen name="Notification" component={NotificationScreen} />
-</Stack.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
