@@ -30,9 +30,6 @@ function MainTabs() {
             case 'Favorites':
               icon = 'heart-outline';
               break;
-            case 'Messages':
-              icon = 'chatbubble-outline';
-              break;
             case 'Profile':
               icon = 'person-outline';
               break;
@@ -44,7 +41,6 @@ function MainTabs() {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Favorites" component={FavoriteScreen} />
-
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );

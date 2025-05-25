@@ -5,7 +5,7 @@
     "location": "Thunder Bay, ON",
     "price": 264900,
     "currency": "CAD",
-    "rating": 4.5,
+     "rating": 5.0,
     "status": "sale",
     "type": "Single Family",
     "description": "Fully Renovated! Great Location! Ideal for First-time Home Buyers or Savvy Investor! This beautifully renovated 3 Bedroom 2 Bathroom Single Family Home features hardwood flooring up and down,  Main Floor Office/Den, spacious Chef's Kitchen with huge Eating Area, Main Floor full bathroom with Heated Floors and Steam Shower. Upstairs features a huge Master Bedroom with additional Closet/Storage, 2 additional large secondary bedrooms and a Full Bathroom with heated floors and a magnificent free-standing tub. The huge basement is partially finished, full height with a separate pantry and laundry area. Overlooking the street is a large functional enclosed front porch for loads of additional storage. Situated on a huge lot with back lane access and gated parking. Close to all the amenities that Fort William has to offer. New Furnace 2016, A/C 2022, Front porch Roof 2015, Rear Roof over Kitchen 2024, Sump Pump, Backflow Valve and sewer line relined in 2024. A must see, this one won't last long. Book your appointment through ShowingTime or call Listing Agent at 613-889-2865",
@@ -74,11 +74,8 @@
     ],
     "agent": {
       "name": "SOLID ROCK REALTY",
-      "image": "https://i.pravatar.cc/100?img=20"
-    },
-    "zipcode": "P7C1N8",
-    "latitude": 48.387398,
-    "longitude": -89.244125
+      "image": "https://i.pravatar.cc/100?img=1"
+    }
   },
   {
     "id": 2057167284,
@@ -86,7 +83,7 @@
     "location": "Thunder Bay, ON",
     "price": 249800,
     "currency": "CAD",
-    "rating": 3.4,
+    "rating": 5.0,
     "status": "sale",
     "type": "Lot",
     "description": "Located in the heart of Thunder Bay, Ontario, this piece of land measures 75 feet in width and 140 feet in length. With draft plan approval already in place, it offers an excellent opportunity for development. The lot is zoned to accommodate a quad unit, making it ideal for rental purposes. Each unit within the quad is designed with four spacious bedrooms, providing ample living space for residents. The layout includes a well-appointed kitchen and two bathrooms, ensuring convenience and comfort. The units are thoughtfully designed to optimize natural light and provide a comfortable living environment. Additionally, the property offers outdoor parking, allowing residents and visitors to park their vehicles conveniently on-site. This feature enhances accessibility and convenience for the occupants of the quad unit. With its prime location in Thunder Bay's central area, the land benefits from proximity to various amenities, including LakeHead University Confederation College & hospitals **EXTRAS** The vibrant community offers a diverse range of services and entertainment options, creating a desirable living environment for future residents.",
@@ -110,11 +107,8 @@
     ],
     "agent": {
       "name": "ROYAL LEPAGE CITIZEN REALTY",
-      "image": "https://i.pravatar.cc/100?img=71"
-    },
-    "zipcode": "P7B2N9",
-    "latitude": 48.41952,
-    "longitude": -89.239815
+      "image": "https://i.pravatar.cc/100?img=1"
+    }
   },
   {
     "id": 2055716067,
@@ -122,9 +116,9 @@
     "location": "Thunder Bay, ON",
     "price": 769900,
     "currency": "CAD",
-    "rating": 4.3,
     "status": "sale",
-    "type": "Single Family",
+     "rating": 5.0,
+     "type": "Single Family",
     "description": "COUNTRY LIIVNG AT ITS BEST IN THE CITY. BEAUTIFUL BUNGALOW WITH FINISHED BASEMENT APARTMENT SITTING ON OVER 25 ACRES OF LAND, LOCATED ON A MAIN ROAD. SURROUNDED BY MATURE TREES AND RIVER RUNNING NEAR BY. FUTURE DEVELOPMENT POTENTIAL. IDEAL FOR HUNTING, CAMPING, STORAGE & PARKING. LARGE 32 FEET X 32 FEET MECHANIC WORKSHOP/GARAGE WITH 12 FOOT CEILINGS, 2 PORTABLE GARAGES. FENCED IN CHICKEN COOP. 20 FEET X 25 FEET GARAGE. WALKOUT DECK FROM THE KITCHEN OVERLOOKING PROPERTY. COME ENJOY THIS BEAUTIFUL ESCAPE FROM THE CITY LIFE. **EXTRAS** NEW WELL PUMP. ROOF DONE 2015. HOT WATER TANK 2 YEARS OLD. FURNACE OWNED. WINDOWS 2 YEARS OLD.",
     "image": "https://photos.zillowstatic.com/fp/dd6bdddc9f4e1d1f9e86fcbdc3edea1f-p_h.jpg",
     "images": [
@@ -177,15 +171,12 @@
       },
       {
         "icon": "resize-outline",
-        "label": "3027 sqft"
+        "label": "None sqft"
       }
     ],
     "agent": {
       "name": "CHAMPS REAL ESTATE BROKERAGE INC.",
-      "image": "https://i.pravatar.cc/100?img=96"
-    },
-    "zipcode": "P7G2G2",
-    "latitude": 48.48786,
-    "longitude": -89.33467
+      "image": "https://i.pravatar.cc/100?img=1"
+    }
   }
 ]

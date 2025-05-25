@@ -54,8 +54,7 @@ const HomeScreen = () => {
       
         <View style={styles.header}>
           <View>
-            <Text style={styles.heading}>Find your best property</Text>
-            <Text style={styles.heading}>in Thunder Bay</Text>
+            <Text style={styles.heading}>Find your best property in Thunder Bay</Text>
           </View>
         </View>
 
@@ -167,6 +166,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: RFValue(18),
     fontWeight: 'bold',
+    wordWrap: 'break-word',
   },
   profileImg: {
     width: RFValue(40),
