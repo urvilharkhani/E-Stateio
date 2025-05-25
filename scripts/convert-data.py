@@ -46,7 +46,7 @@ def convert_property_data(input_json):
         "price": input_json.get("price") if input_json.get("price") not in [None, "", 0] else fake_price,
         "currency": non_empty(input_json.get("currency"), fake_currency),
         "rating": rating,
-        "status": ("sale" if input_json.get("status") == "FOR_SALE" else non_empty(input_json.get("status", "").lower(), fake_status)),
+        "status": ("rent" if input_json.get("status") == "FOR_RENT" else non_empty(input_json.get("status", "").replace("FOR_", "").lower(), fake_status)),
         "type": ("Single Family" if input_json.get("homeType") == "SINGLE_FAMILY" else non_empty(input_json.get("homeType", "").replace("_", " ").title(), fake_type)),
         "description": non_empty(input_json.get("description"), fake_description),
         "image": non_empty(input_json.get("image"), fake_image),
