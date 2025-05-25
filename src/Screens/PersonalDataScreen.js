@@ -25,7 +25,7 @@ export default function PersonalDataScreen() {
     name:    '',
     email:   '',
     phone:   '',
-    address: '',
+    address: 'Thunder Bay, ON',
     image:   'https://i.pravatar.cc/100?img=3'
   });
 
