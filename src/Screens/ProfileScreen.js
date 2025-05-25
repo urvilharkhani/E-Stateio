@@ -18,7 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const options = [
   { id: '1', label: 'Personal data', icon: 'person-outline', screen: 'PersonalData' },
   { id: '2', label: 'Settings', icon: 'settings-outline' },
-  { id: '3', label: 'Notification', icon: 'notifications-outline' },
+  { id: '3', label: 'Notification', icon: 'notifications-outline',screen: 'Notification'},
   { id: '4', label: 'Privacy & policy', icon: 'shield-checkmark-outline' },
   { id: '5', label: 'About us', icon: 'information-circle-outline' },
   { id: '6', label: 'FAQ', icon: 'help-circle-outline' },
