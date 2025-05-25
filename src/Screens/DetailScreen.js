@@ -15,8 +15,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation, useRoute } from '@react-navigation/native';
-// import { addFavorite, removeFavorite, isFavorited } from '../common/storage';
-import { addFavorite, removeFavorite, isFavorited } from '../common/sqlliteService';
+import { addFavorite, removeFavorite, isFavorited } from '../common/storage';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -24,8 +23,8 @@ const DetailScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const { item, category } = route.params;
+
   const [favorite, setFavorite] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   const imagesToShow = item.images && item.images.length > 0 ? item.images : [item.image];
 
@@ -54,31 +53,13 @@ const DetailScreen = () => {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         keyExtractor={(uri, idx) => uri + idx}
-        renderItem={({ item }) => (
-          <View style={styles.carouselImage}>
-            <Image source={{ uri: item }} style={{ width: "100%", height: '100%' }} />
-          </View>
-        )}
-        onScroll={e => {
-          const index = Math.round(
-            e.nativeEvent.contentOffset.x /
-            e.nativeEvent.layoutMeasurement.width
-          );
-          setCurrentIndex(index);
-        }}
-        scrollEventThrottle={16}
-      />
-      <View style={styles.dotsContainer}>
-        {imagesToShow.map((_, idx) => (
-          <View
-            key={idx}
-            style={[
-              styles.dot,
-              currentIndex === idx && styles.activeDot
-            ]}
-          />
-        ))}
+    renderItem={({ item }) => (
+      <View style={styles.carouselImage}>
+
+        <Image  source={{ uri: item }}  style={{width:"100%", height:'100%'}}/>
       </View>
+        )}
+      />
 
       <TouchableOpacity
         onPress={() => navigation.goBack()}
@@ -114,9 +95,7 @@ const DetailScreen = () => {
             {item.features.map((f, i) => (
               <View key={i} style={styles.featureItem}>
                 <Ionicons name={f.icon} size={RFValue(20)} color="#00C48C" />
-                <Text style={styles.featureText}>
-                  {f.label && f.label.toLowerCase().includes('none') ? 'Not Available' : f.label}
-                </Text>
+                <Text style={styles.featureText}>{f.label}</Text>
               </View>
             ))}
           </View>
@@ -130,8 +109,7 @@ const DetailScreen = () => {
               <Text style={styles.agentName}>{item.agent.name}</Text>
               <Text style={styles.agentRole}>Agent</Text>
             </View>
-            <TouchableOpacity style={styles.messageBtn}  onPress={() => navigation.navigate('MessageScreen', { agent: item.agent, property: item })}
->
+            <TouchableOpacity style={styles.messageBtn}>
               <Text style={styles.messageText}>Message</Text>
             </TouchableOpacity>
           </View>
@@ -144,28 +122,6 @@ const DetailScreen = () => {
 export default DetailScreen;
 
 const styles = StyleSheet.create({
-  dotsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: SCREEN_WIDTH,
-    marginTop: RFValue(-35),
-    height: RFValue(20),
-  },
-  dot: {
-    width: RFValue(8),
-    height: RFValue(8),
-    borderRadius: RFValue(4),
-    backgroundColor: '#ccc',
-    marginHorizontal: RFValue(4),
-    marginVertical: RFValue(2),
-  },
-  activeDot: {
-    backgroundColor: '#00C48C',
-    width: RFValue(10),
-    height: RFValue(10),
-  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -173,7 +129,7 @@ const styles = StyleSheet.create({
   },
   carouselImage: {
     width: SCREEN_WIDTH,
-    height: RFValue(400),
+    height: RFValue(220),
     resizeMode: 'cover',
   },
   iconButton: {

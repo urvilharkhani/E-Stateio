@@ -3,8 +3,6 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { Dimensions } from 'react-native';
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 // const ListingCard = ({ title, image, location, price, rating, type, category,name }) => {
 //   const formattedPrice = price.split('/')[0];
@@ -31,22 +29,15 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 //         <Text style={styles.price}>
 //           <Text style={styles.priceMain}>{formattedPrice}</Text>
+//           <Text style={styles.priceSub}>{suffix}</Text>
+//         </Text>
+//       </View>
+//     </View>
+//   );
+// };
 const ListingCard = ({ title, image, location, price, rating, type, category, currency }) => {
-  const formattedPrice = `${formatPrice(price)} ${currency}`;
+  const formattedPrice = `${price} ${currency}`;
   const suffix = category === 'rent' ? '/month' : '';
-
-  function formatPrice(price) {
-    if (price >= 1000) {
-      return (price / 1000).toFixed(price % 1000 === 0 ? 0 : 1) + 'k';
-    }
-    return price.toString();
-  }
-
-  const getTitleThreshold = () => {
-    if (SCREEN_WIDTH >= 450) return 20;
-    if (SCREEN_WIDTH >= 350) return 15;
-    return 10;
-  };
 
   return (
     <View style={styles.card}>
@@ -60,9 +51,7 @@ const ListingCard = ({ title, image, location, price, rating, type, category, cu
           <Text style={styles.type}>{type}</Text>
         </View>
 
-        <Text style={styles.title}>
-          {title.length > getTitleThreshold() ? title.slice(0, getTitleThreshold()) + '…' : title}
-        </Text>
+        <Text style={styles.title}>{title}</Text>
 
         <View style={styles.row}>
           <Ionicons name="location-outline" size={RFValue(12)} color="#aaa" />
@@ -89,7 +78,6 @@ const styles = StyleSheet.create({
     borderColor: '#eee',
     borderWidth: 1,
     paddingBottom: RFValue(10),
-    minHeight: RFValue(200),
   },
   image: {
     width: '100%',
