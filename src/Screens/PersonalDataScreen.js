@@ -35,7 +35,7 @@ export default function PersonalDataScreen() {
         (async () => {
           const json = await AsyncStorage.getItem(STORAGE_KEY);
           if (json) {
-            setProfile(prev => ({ ...prev, ...JSON.parse(json) }));
+            setProfile(JSON.parse(json));
           }
         })();
       }, [])
@@ -85,7 +85,7 @@ export default function PersonalDataScreen() {
         </View>
 
         <View style={styles.avatarWrapper}>
-          <Image source={{ uri: profile.image }} style={styles.avatar} />
+          <Image source={typeof profile.image === 'string' ? { uri: profile.image } : profile.image} style={styles.avatar} />
           <TouchableOpacity>
             <Ionicons name="camera" size={RFValue(16)} color="#00C48C" style={styles.cameraIcon} onPress={handlePickImage}/>
           </TouchableOpacity>

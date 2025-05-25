@@ -33,7 +33,8 @@ export default function ProfileScreen() {
     const navigation = useNavigation();
     const [name, setName] = useState('');
     const [location, setLocation] = useState('');
-    const [avatar, setAvatar] = useState(require('../assets/images/defaultProfileIcon.png'));
+    const uri = require('../assets/images/defaultProfileIcon.png');
+    const [avatar, setAvatar] = useState(uri);
 
     useFocusEffect(
         useCallback(() => {
@@ -44,9 +45,15 @@ export default function ProfileScreen() {
                     setName(parsed.name || '');
                     setLocation(parsed.address || '');
                     if (parsed.image) setAvatar(parsed.image);
-                    else setAvatar(require('../assets/images/defaultProfileIcon.png'));
+                    else {
+                        const stored = await AsyncStorage.getItem(STORAGE_KEY);
+                        let data = stored ? JSON.parse(stored) : {};
+                        data.image = uri;
+                        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                        setAvatar(uri);
+                    }
                 } else {
-                    setAvatar(require('../assets/images/defaultProfileIcon.png'));
+                    setAvatar(uri);
                 }
             })();
         }, [])
