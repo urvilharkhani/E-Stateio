@@ -9,6 +9,8 @@ import FavoriteScreen from '../Screens/FavoriteScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
 import DetailScreen from '../Screens/DetailScreen';
 import PersonalDataScreen from '../Screens/PersonalDataScreen';
+import MessageScreen from '../Screens/MessageScreen';
+import NotificationScreen from '../Screens/NotificationScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -52,8 +54,10 @@ export default function AppNavigator() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="MainTabs" component={MainTabs} />
         <Stack.Screen name="Detail" component={DetailScreen} />
-        <Stack.Screen name="PersonalData" component={PersonalDataScreen} />
-      </Stack.Navigator>
+      <Stack.Screen name="PersonalData" component={PersonalDataScreen} />
+     <Stack.Screen name="MessageScreen" component={MessageScreen} />
+     <Stack.Screen name="Notification" component={NotificationScreen} />
+</Stack.Navigator>
     </NavigationContainer>
   );
 }

@@ -56,6 +56,7 @@ const HomeScreen = () => {
           <View>
             <Text style={styles.heading}>Find your best property in Thunder Bay</Text>
           </View>
+          
         </View>
 
         <View style={styles.searchWrapper}>
@@ -110,8 +111,10 @@ const HomeScreen = () => {
               </TouchableOpacity>
             )}
           />
-        ) : (
+        ) : (<View style={styles.emptyWrapper}>
+
           <Text style={styles.emptyText}>Not at the moment</Text>
+          </View>
         )}
 
         <View style={styles.sectionHeader}>
@@ -136,7 +139,10 @@ const HomeScreen = () => {
             )}
           />
         ) : (
-          <Text style={styles.emptyText}>Not at the moment</Text>
+          <View style={styles.emptyWrapper}>
+
+            <Text style={styles.emptyText}>Not at the moment</Text>
+          </View>
         )}
       </ScrollView>
     </SafeAreaView>
@@ -220,11 +226,12 @@ const styles = StyleSheet.create({
   listings: {
     paddingBottom: RFValue(10),
   },
+  emptyWrapper:{flex:2,justifyContent:'center',alignItems:'center'},
   emptyText: {
     fontSize: RFValue(14),
     color: '#999',
     fontStyle: 'italic',
     paddingLeft: RFValue(10),
-    marginBottom: RFValue(10),
+    marginVertical: RFValue(10),
   },
 });
