@@ -17,38 +17,42 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const STORAGE_KEY = '@profile_data';
+
 const options = [
-    { id: '1', label: 'Personal data', icon: 'person-outline', screen: 'PersonalData' },
-    { id: '2', label: 'Settings',      icon: 'settings-outline' },
-    { id: '3', label: 'Notification',  icon: 'notifications-outline' },
-    { id: '4', label: 'Privacy & policy', icon: 'shield-checkmark-outline' },
-    { id: '5', label: 'About us',      icon: 'information-circle-outline' },
-    { id: '6', label: 'FAQ',           icon: 'help-circle-outline' },
+    { id: '1', label: 'Personal data',     icon: 'person-outline',            screen: 'PersonalData' },
+    { id: '2', label: 'Settings',          icon: 'settings-outline' },
+    { id: '3', label: 'Notification',      icon: 'notifications-outline' },
+    { id: '4', label: 'Privacy & policy',  icon: 'shield-checkmark-outline' },
+    { id: '5', label: 'About us',          icon: 'information-circle-outline' },
+    { id: '6', label: 'FAQ',               icon: 'help-circle-outline' },
 ];
 
 export default function ProfileScreen() {
     const navigation = useNavigation();
 
-    const [name, setName]         = useState('Hafiz Dzaki');
-    const [location, setLocation] = useState('Samarinda, Indonesia');
-    const [avatar, setAvatar]     = useState('https://i.pravatar.cc/100?img=3');
+    // start empty—will populate from AsyncStorage
+    const [name,     setName]     = useState('');
+    const [location, setLocation] = useState('');
+    const [avatar,   setAvatar]   = useState('https://i.pravatar.cc/100?img=3');
 
-    // Load saved profile each time screen gains focus
+    // reload profile each time screen focuses
     useFocusEffect(
         useCallback(() => {
             (async () => {
-                const data = await AsyncStorage.getItem('@profile_data');
+                const data = await AsyncStorage.getItem(STORAGE_KEY);
                 if (data) {
                     const parsed = JSON.parse(data);
-                    setName(parsed.name || name);
-                    setAvatar(parsed.image || avatar);
+                    setName(parsed.name || '');
+                    setLocation(parsed.address || '');  // if you later store address
+                    if (parsed.image) setAvatar(parsed.image);
                 }
             })();
         }, [])
     );
 
-    // Logout handler
-    const handleLogout = async () => {
+    // logout: clear storage & reset to Login
+    const handleLogout = () => {
         Alert.alert(
             'Log out',
             'Are you sure you want to log out?',
@@ -58,30 +62,20 @@ export default function ProfileScreen() {
                     text: 'Log Out',
                     style: 'destructive',
                     onPress: async () => {
-                        await AsyncStorage.removeItem('@profile_data');
-                        navigation.reset({
-                            index: 0,
-                            routes: [{ name: 'Login' }],
-                        });
+                        await AsyncStorage.removeItem(STORAGE_KEY);
+                        navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
                     }
                 }
             ]
         );
     };
 
-    // Add logout icon button in header
+    // place logout icon in header
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <TouchableOpacity
-                    onPress={handleLogout}
-                    style={{ marginRight: RFValue(16) }}
-                >
-                    <Ionicons
-                        name="log-out-outline"
-                        size={RFValue(22)}
-                        color="#333"
-                    />
+                <TouchableOpacity onPress={handleLogout} style={{ marginRight: RFValue(16) }}>
+                    <Ionicons name="log-out-outline" size={RFValue(22)} color="#333" />
                 </TouchableOpacity>
             )
         });
@@ -108,7 +102,7 @@ export default function ProfileScreen() {
                 <View style={styles.profile}>
                     <Image source={{ uri: avatar }} style={styles.avatar} />
                     <Text style={styles.name}>{name}</Text>
-                    <Text style={styles.location}>{location}</Text>
+                    {location ? <Text style={styles.location}>{location}</Text> : null}
                 </View>
 
                 <FlatList

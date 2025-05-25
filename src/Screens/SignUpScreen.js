@@ -1,4 +1,3 @@
-// src/screens/SignUpScreen.js
 import React, { useState } from 'react';
 import {
     SafeAreaView,
@@ -12,14 +11,19 @@ import {
     Platform,
     StatusBar
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const STORAGE_KEY = '@profile_data';
 
 export default function SignUpScreen({ navigation }) {
-    const [email, setEmail]         = useState('');
-    const [password, setPassword]   = useState('');
-    const [confirm, setConfirm]     = useState('');
+    const [name, setName]         = useState('');
+    const [email, setEmail]       = useState('');
+    const [phone, setPhone]       = useState('');
+    const [password, setPassword] = useState('');
+    const [confirm, setConfirm]   = useState('');
 
-    const handleSignUp = () => {
-        if (!email || !password) {
+    const handleSignUp = async () => {
+        if (!name || !email || !phone || !password) {
             Alert.alert('Error', 'Please fill all fields');
             return;
         }
@@ -27,8 +31,12 @@ export default function SignUpScreen({ navigation }) {
             Alert.alert('Error', 'Passwords do not match');
             return;
         }
-        // TODO: integrate real sign-up here
-        navigation.replace('Login');
+
+        const profileData = { name, email, phone };
+        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(profileData));
+
+        // Navigate into your main app flow
+        navigation.replace('MainTabs');  // or replace('Home') if you have a Home-only stack
     };
 
     return (
@@ -37,11 +45,24 @@ export default function SignUpScreen({ navigation }) {
             <View style={styles.form}>
                 <TextInput
                     style={styles.input}
+                    placeholder="Name"
+                    value={name}
+                    onChangeText={setName}
+                />
+                <TextInput
+                    style={styles.input}
                     placeholder="Email"
                     autoCapitalize="none"
                     keyboardType="email-address"
                     value={email}
                     onChangeText={setEmail}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Phone"
+                    keyboardType="phone-pad"
+                    value={phone}
+                    onChangeText={setPhone}
                 />
                 <TextInput
                     style={styles.input}
@@ -72,7 +93,9 @@ export default function SignUpScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 10 : 0,
+        paddingTop: Platform.OS === 'android'
+            ? StatusBar.currentHeight + 10
+            : 0,
         alignItems: 'center',
         backgroundColor: '#fff'
     },

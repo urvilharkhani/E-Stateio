@@ -51,16 +51,13 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <ScrollView style={styles.container}>
-      
+
         <View style={styles.header}>
           <View>
             <Text style={styles.heading}>Find your best</Text>
             <Text style={styles.heading}>property</Text>
           </View>
-          <Image
-            source={{ uri: 'https://i.pravatar.cc/100?img=2' }}
-            style={styles.profileImg}
-          />
+
         </View>
 
         <View style={styles.searchWrapper}>
