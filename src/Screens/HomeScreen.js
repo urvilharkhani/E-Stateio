@@ -17,8 +17,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 import ListingCard from '../component/ListingCard';
-import mockRentListings from '../data/final_mockRentListings.json';
-import mockSoldListings from '../data/final_mockSoldListings.json';
+import mockRentListings from '../data/mockRentListings.json';
+import mockSoldListings from '../data/mockSoldListings.json';
 
 const allListings = [...mockRentListings, ...mockSoldListings];
 const uniqueTypes = [...new Set(allListings.map(item => item.type))];
@@ -28,7 +28,7 @@ const generatedCategories = [
   ...uniqueTypes.map((type, idx) => ({
     id: idx,
     label: type,
-    icon: 'home-outline', // customize as needed
+    icon: 'home-outline',
   })),
 ];
 
@@ -54,10 +54,9 @@ const HomeScreen = () => {
       
         <View style={styles.header}>
           <View>
-            <Text style={styles.heading}>Find your best</Text>
-            <Text style={styles.heading}>property</Text>
+            <Text style={styles.heading}>Find your best property</Text>
+            <Text style={styles.heading}>in Thunder Bay</Text>
           </View>
-          
         </View>
 
         <View style={styles.searchWrapper}>
