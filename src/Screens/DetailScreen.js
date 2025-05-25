@@ -15,6 +15,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import MapView, { Marker } from 'react-native-maps';
 // import { addFavorite, removeFavorite, isFavorited } from '../common/storage';
 import { addFavorite, removeFavorite, isFavorited } from '../common/sqlliteService';
 
@@ -29,12 +30,10 @@ const DetailScreen = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const imagesToShow = item.images && item.images.length > 0 ? item.images : [item.image];
-  console.log("imagesToShow",imagesToShow);
 
   const validImages = imagesToShow.filter(
     uri => typeof uri === 'string' && uri.length > 0
   );
-  console.log("validImages",validImages);
 
   useEffect(() => {
     const checkFavorite = async () => {
@@ -131,6 +130,29 @@ const DetailScreen = () => {
           <Text style={styles.sectionTitle}>Description</Text>
           <Text style={styles.description}>{item.description}</Text>
 
+          <Text style={styles.sectionTitle}>Location</Text>
+          <View style={styles.mapContainer}>
+            <MapView
+              style={styles.map}
+              initialRegion={{
+                latitude: item.latitude,
+                longitude: item.longitude,
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01,
+              }}
+              scrollEnabled={true}
+              zoomEnabled={true}
+              pitchEnabled={true}
+              rotateEnabled={true}
+            >
+              <Marker
+                coordinate={{ latitude: item.latitude, longitude: item.longitude }}
+                title={item.title}
+                description={item.location}
+              />
+            </MapView>
+          </View>
+
           <View style={styles.agentRow}>
             <Image source={{ uri: item.agent.image }} style={styles.agentImg} />
             <View style={{ flex: 1 }}>
@@ -141,6 +163,7 @@ const DetailScreen = () => {
               <Text style={styles.messageText}>Message</Text>
             </TouchableOpacity>
           </View>
+
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -265,5 +288,17 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: RFValue(14),
+  },
+  mapContainer: {
+    width: '100%',
+    height: RFValue(200),
+    borderRadius: RFValue(16),
+    overflow: 'hidden',
+    marginTop: RFValue(16),
+    marginBottom: RFValue(24),
+  },
+  map: {
+    width: '100%',
+    height: '100%',
   },
 });
