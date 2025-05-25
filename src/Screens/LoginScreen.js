@@ -1,5 +1,6 @@
 // src/screens/LoginScreen.js
 import React, { useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import {
     SafeAreaView,
     View,
@@ -12,6 +13,7 @@ import {
     Platform,
     StatusBar
 } from 'react-native';
+
 
 export default function LoginScreen({ navigation }) {
     const [email, setEmail]       = useState('');
@@ -46,6 +48,18 @@ export default function LoginScreen({ navigation }) {
                     onChangeText={setPassword}
                 />
                 <Button title="Log In" onPress={handleLogin} />
+                {/* Forgot password icon/link */}
+                <TouchableOpacity
+                    style={styles.forgotRow}
+                    onPress={() => navigation.navigate('SignUp')}
+                >
+                    <Ionicons
+                        name="help-circle-outline"
+                        size={20}
+                        color="#007AFF"
+                    />
+                    <Text style={styles.forgotText}> Forgot password?</Text>
+                </TouchableOpacity>
             </View>
             <View style={styles.footer}>
                 <Text>Don't have an account?</Text>
@@ -79,6 +93,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         paddingVertical: 8,
         marginBottom: 16
+    },
+    forgotRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 8,
+        alignSelf: 'flex-start'
+    },
+    forgotText: {
+        color: '#007AFF',
+        marginLeft: 4
     },
     footer: {
         flexDirection: 'row',
