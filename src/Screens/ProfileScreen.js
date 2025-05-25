@@ -12,6 +12,7 @@ import {
     Platform,
     Alert
 } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
@@ -20,23 +21,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const STORAGE_KEY = '@profile_data';
 
 const options = [
-    { id: '1', label: 'Personal data',     icon: 'person-outline',            screen: 'PersonalData' },
-    { id: '2', label: 'Settings',          icon: 'settings-outline' },
-    { id: '3', label: 'Notification',      icon: 'notifications-outline' },
-    { id: '4', label: 'Privacy & policy',  icon: 'shield-checkmark-outline' },
-    { id: '5', label: 'About us',          icon: 'information-circle-outline' },
-    { id: '6', label: 'FAQ',               icon: 'help-circle-outline' },
+    { id: '1', label: 'Personal data', icon: 'person-outline', screen: 'PersonalData' },
+    { id: '2', label: 'Settings', icon: 'settings-outline' },
+    { id: '3', label: 'Notification', icon: 'notifications-outline' },
+    { id: '4', label: 'Privacy & policy', icon: 'shield-checkmark-outline' },
+    { id: '5', label: 'About us', icon: 'information-circle-outline' },
+    { id: '6', label: 'FAQ', icon: 'help-circle-outline' },
 ];
 
 export default function ProfileScreen() {
     const navigation = useNavigation();
-
-    // start empty—will populate from AsyncStorage
-    const [name,     setName]     = useState('');
+    const [name, setName] = useState('');
     const [location, setLocation] = useState('');
-    const [avatar,   setAvatar]   = useState('https://i.pravatar.cc/100?img=3');
+    const [avatar, setAvatar] = useState(require('../assets/images/defaultProfileIcon.png'));
 
-    // reload profile each time screen focuses
     useFocusEffect(
         useCallback(() => {
             (async () => {
@@ -44,14 +42,16 @@ export default function ProfileScreen() {
                 if (data) {
                     const parsed = JSON.parse(data);
                     setName(parsed.name || '');
-                    setLocation(parsed.address || '');  // if you later store address
+                    setLocation(parsed.address || '');
                     if (parsed.image) setAvatar(parsed.image);
+                    else setAvatar(require('../assets/images/defaultProfileIcon.png'));
+                } else {
+                    setAvatar(require('../assets/images/defaultProfileIcon.png'));
                 }
             })();
         }, [])
     );
 
-    // logout: clear storage & reset to Login
     const handleLogout = () => {
         Alert.alert(
             'Log out',
@@ -70,17 +70,6 @@ export default function ProfileScreen() {
         );
     };
 
-    // place logout icon in header
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            headerRight: () => (
-                <TouchableOpacity onPress={handleLogout} style={{ marginRight: RFValue(16) }}>
-                    <Ionicons name="log-out-outline" size={RFValue(22)} color="#333" />
-                </TouchableOpacity>
-            )
-        });
-    }, [navigation, handleLogout]);
-
     const renderItem = ({ item }) => (
         <TouchableOpacity
             style={styles.option}
@@ -96,11 +85,22 @@ export default function ProfileScreen() {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
-            <View style={styles.container}>
-                <Text style={styles.title}>Profile</Text>
+            <StatusBar barStyle={Platform.OS === 'ios' ? 'dark-content' : 'default'} />
 
+            <View style={styles.header}>
+                {/* Left spacer to balance the logout icon on the right */}
+                <View style={{ width: RFValue(30) }} />
+                <Text style={styles.headerTitle}>Profile</Text>
+                <TouchableOpacity onPress={handleLogout} style={styles.headerLogoutIcon}>
+                    <Ionicons name="log-out-outline" size={RFValue(22)} color="#333" />
+                </TouchableOpacity>
+            </View>
+
+            <View style={styles.container}>
                 <View style={styles.profile}>
-                    <Image source={{ uri: avatar }} style={styles.avatar} />
+                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                        <Image source={typeof avatar === 'string' ? { uri: avatar } : avatar} style={styles.avatar} />
+                    </View>
                     <Text style={styles.name}>{name}</Text>
                     {location ? <Text style={styles.location}>{location}</Text> : null}
                 </View>
@@ -117,6 +117,25 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        height: RFValue(60),
+        paddingHorizontal: RFValue(16),
+        backgroundColor: '#fff',
+    },
+    headerTitle: {
+        fontSize: RFValue(20),
+        fontWeight: 'bold',
+        color: '#333',
+        flex: 1,
+        textAlign: 'center',
+    },
+
+    headerLogoutIcon: {
+        padding: RFValue(4),
+    },
     mainContainer: {
         flex: 1,
         backgroundColor: '#fff',

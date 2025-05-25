@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import * as ImagePicker from 'expo-image-picker';
 import {
   SafeAreaView,
   View,
@@ -40,6 +41,30 @@ export default function PersonalDataScreen() {
       }, [])
   );
 
+  // Image picker handler
+  const handlePickImage = async () => {
+    // Ask for permission
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Permission denied', 'We need permission to access your photos.');
+      return;
+    }
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+    if (!result.canceled && result.assets && result.assets.length > 0) {
+      const uri = result.assets[0].uri;
+      setProfile(prev => ({ ...prev, image: uri }));
+      const stored = await AsyncStorage.getItem(STORAGE_KEY);
+      let data = stored ? JSON.parse(stored) : {};
+      data.image = uri;
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+  };
+
   const handleSave = async () => {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
     Alert.alert('Saved!', 'Your personal data was updated.', [
@@ -61,8 +86,8 @@ export default function PersonalDataScreen() {
 
         <View style={styles.avatarWrapper}>
           <Image source={{ uri: profile.image }} style={styles.avatar} />
-          <TouchableOpacity style={styles.cameraIcon}>
-            <Ionicons name="camera" size={RFValue(16)} color="#00C48C" />
+          <TouchableOpacity>
+            <Ionicons name="camera" size={RFValue(16)} color="#00C48C" style={styles.cameraIcon} onPress={handlePickImage}/>
           </TouchableOpacity>
         </View>
 
@@ -150,7 +175,9 @@ const styles = StyleSheet.create({
   },
   cameraIcon: {
     position: 'absolute',
-    bottom: 0,
+    bottom: -10,
+    alignSelf: 'center',
+    elevation: 3,
     right: RFValue(10),
     backgroundColor: '#fff',
     padding: RFValue(5),
