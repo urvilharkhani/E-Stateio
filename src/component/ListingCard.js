@@ -3,6 +3,8 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { Dimensions } from 'react-native';
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 // const ListingCard = ({ title, image, location, price, rating, type, category,name }) => {
 //   const formattedPrice = price.split('/')[0];
@@ -40,6 +42,12 @@ const ListingCard = ({ title, image, location, price, rating, type, category, cu
     return price.toString();
   }
 
+  const getTitleThreshold = () => {
+    if (SCREEN_WIDTH >= 450) return 20;
+    if (SCREEN_WIDTH >= 350) return 15;
+    return 10;
+  };
+
   return (
     <View style={styles.card}>
       <Image source={{ uri: image }} style={styles.image} />
@@ -52,7 +60,9 @@ const ListingCard = ({ title, image, location, price, rating, type, category, cu
           <Text style={styles.type}>{type}</Text>
         </View>
 
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>
+          {title.length > getTitleThreshold() ? title.slice(0, getTitleThreshold()) + '…' : title}
+        </Text>
 
         <View style={styles.row}>
           <Ionicons name="location-outline" size={RFValue(12)} color="#aaa" />
@@ -79,6 +89,7 @@ const styles = StyleSheet.create({
     borderColor: '#eee',
     borderWidth: 1,
     paddingBottom: RFValue(10),
+    minHeight: RFValue(200),
   },
   image: {
     width: '100%',

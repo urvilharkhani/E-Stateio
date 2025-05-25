@@ -15,7 +15,8 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { addFavorite, removeFavorite, isFavorited } from '../common/storage';
+// import { addFavorite, removeFavorite, isFavorited } from '../common/storage';
+import { addFavorite, removeFavorite, isFavorited } from '../common/firebaseService';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -48,7 +49,6 @@ const DetailScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Carousel Images with Dots */}
       <FlatList
         data={imagesToShow}
         horizontal

@@ -12,9 +12,10 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { getFavorites, removeFavorite } from '../common/storage';
+// import { getFavorites, removeFavorite } from '../common/storage';
 import CustomModal from '../component/CustomModal';
 import { SwipeListView } from 'react-native-swipe-list-view';
+import { getFavorites, removeFavorite } from '../common/firebaseService';
 
 const FavoritesScreen = () => {
   const [favorites, setFavorites] = useState([]);
