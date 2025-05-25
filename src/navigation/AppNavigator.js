@@ -13,6 +13,8 @@ import FavoriteScreen      from '../Screens/FavoriteScreen';
 import ProfileScreen       from '../Screens/ProfileScreen';
 import DetailScreen        from '../Screens/DetailScreen';
 import PersonalDataScreen  from '../Screens/PersonalDataScreen';
+import MessageScreen       from '../Screens/MessageScreen';
+import NotificationScreen  from '../Screens/NotificationScreen';
 
 const Tab   = createBottomTabNavigator();
 const Stack = createStackNavigator();
