@@ -14,13 +14,12 @@ import {
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 const STORAGE_KEY = '@profile_data';
 
 export default function PersonalDataScreen() {
   const navigation = useNavigation();
-
   const [profile, setProfile] = useState({
     name:    '',
     email:   '',
@@ -29,18 +28,17 @@ export default function PersonalDataScreen() {
     image:   'https://i.pravatar.cc/100?img=3'
   });
 
-  useEffect(() => {
-    (async () => {
-      const data = await AsyncStorage.getItem(STORAGE_KEY);
-      if (data) {
-        const parsed = JSON.parse(data);
-        setProfile(prev => ({
-          ...prev,
-          ...parsed
-        }));
-      }
-    })();
-  }, []);
+  // Reload on focus so changes persist
+  useFocusEffect(
+      React.useCallback(() => {
+        (async () => {
+          const json = await AsyncStorage.getItem(STORAGE_KEY);
+          if (json) {
+            setProfile(prev => ({ ...prev, ...JSON.parse(json) }));
+          }
+        })();
+      }, [])
+  );
 
   const handleSave = async () => {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
@@ -51,45 +49,26 @@ export default function PersonalDataScreen() {
 
   return (
       <SafeAreaView style={styles.container}>
-        {/* Header with back and save */}
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons
-                name="arrow-back"
-                size={RFValue(20)}
-                color="black"
-            />
+            <Ionicons name="arrow-back" size={RFValue(20)} color="black" />
           </TouchableOpacity>
-
           <Text style={styles.headerTitle}>Personal Data</Text>
-
           <TouchableOpacity onPress={handleSave}>
             <Text style={styles.saveText}>Save</Text>
           </TouchableOpacity>
         </View>
 
-        {/* Avatar */}
         <View style={styles.avatarWrapper}>
-          <Image
-              source={{ uri: profile.image }}
-              style={styles.avatar}
-          />
+          <Image source={{ uri: profile.image }} style={styles.avatar} />
           <TouchableOpacity style={styles.cameraIcon}>
-            <Ionicons
-                name="camera"
-                size={RFValue(16)}
-                color="#00C48C"
-            />
+            <Ionicons name="camera" size={RFValue(16)} color="#00C48C" />
           </TouchableOpacity>
         </View>
 
-        {/* Editable Name */}
+        {/* Name editable */}
         <View style={styles.inputWrapper}>
-          <Ionicons
-              name="person-outline"
-              size={RFValue(18)}
-              color="#ccc"
-          />
+          <Ionicons name="person-outline" size={RFValue(18)} color="#ccc" />
           <TextInput
               style={styles.input}
               value={profile.name}
@@ -100,13 +79,9 @@ export default function PersonalDataScreen() {
           />
         </View>
 
-        {/* Non-editable fields */}
+        {/* Email read-only */}
         <View style={styles.inputWrapperDisabled}>
-          <Ionicons
-              name="mail-outline"
-              size={RFValue(18)}
-              color="#ccc"
-          />
+          <Ionicons name="mail-outline" size={RFValue(18)} color="#ccc" />
           <TextInput
               style={styles.disabledText}
               value={profile.email}
@@ -114,25 +89,23 @@ export default function PersonalDataScreen() {
           />
         </View>
 
-        <View style={styles.inputWrapperDisabled}>
-          <Ionicons
-              name="call-outline"
-              size={RFValue(18)}
-              color="#ccc"
-          />
+        {/* Phone editable */}
+        <View style={styles.inputWrapper}>
+          <Ionicons name="call-outline" size={RFValue(18)} color="#ccc" />
           <TextInput
-              style={styles.disabledText}
+              style={styles.input}
               value={profile.phone}
-              editable={false}
+              onChangeText={text =>
+                  setProfile(prev => ({ ...prev, phone: text }))
+              }
+              placeholder="Enter your phone"
+              keyboardType="phone-pad"
           />
         </View>
 
+        {/* Address read-only */}
         <View style={styles.inputWrapperDisabled}>
-          <Ionicons
-              name="location-outline"
-              size={RFValue(18)}
-              color="#ccc"
-          />
+          <Ionicons name="location-outline" size={RFValue(18)} color="#ccc" />
           <TextInput
               style={styles.disabledText}
               value={profile.address}
@@ -148,9 +121,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     paddingTop:
-        Platform.OS === 'android'
-            ? StatusBar.currentHeight
-            : 0,
+        Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     paddingHorizontal: RFValue(20)
   },
   header: {
