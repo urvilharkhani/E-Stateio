@@ -74,7 +74,7 @@
     ],
     "agent": {
       "name": "SOLID ROCK REALTY",
-      "image": "https://i.pravatar.cc/100?img=82"
+      "image": "https://i.pravatar.cc/100?img=69"
     },
     "zipcode": "P7C1N8",
     "latitude": 48.387398,
@@ -86,7 +86,7 @@
     "location": "Thunder Bay, ON",
     "price": 249800,
     "currency": "CAD",
-    "rating": 4.4,
+    "rating": 3.4,
     "status": "sale",
     "type": "Lot",
     "description": "Located in the heart of Thunder Bay, Ontario, this piece of land measures 75 feet in width and 140 feet in length. With draft plan approval already in place, it offers an excellent opportunity for development. The lot is zoned to accommodate a quad unit, making it ideal for rental purposes. Each unit within the quad is designed with four spacious bedrooms, providing ample living space for residents. The layout includes a well-appointed kitchen and two bathrooms, ensuring convenience and comfort. The units are thoughtfully designed to optimize natural light and provide a comfortable living environment. Additionally, the property offers outdoor parking, allowing residents and visitors to park their vehicles conveniently on-site. This feature enhances accessibility and convenience for the occupants of the quad unit. With its prime location in Thunder Bay's central area, the land benefits from proximity to various amenities, including LakeHead University Confederation College & hospitals **EXTRAS** The vibrant community offers a diverse range of services and entertainment options, creating a desirable living environment for future residents.",
@@ -105,12 +105,12 @@
       },
       {
         "icon": "resize-outline",
-        "label": "10419.156 Square Feet"
+        "label": "1943 Square Feet"
       }
     ],
     "agent": {
       "name": "ROYAL LEPAGE CITIZEN REALTY",
-      "image": "https://i.pravatar.cc/100?img=10"
+      "image": "https://i.pravatar.cc/100?img=18"
     },
     "zipcode": "P7B2N9",
     "latitude": 48.41952,
@@ -122,7 +122,7 @@
     "location": "Thunder Bay, ON",
     "price": 769900,
     "currency": "CAD",
-    "rating": 3.8,
+    "rating": 3.5,
     "status": "sale",
     "type": "Single Family",
     "description": "COUNTRY LIIVNG AT ITS BEST IN THE CITY. BEAUTIFUL BUNGALOW WITH FINISHED BASEMENT APARTMENT SITTING ON OVER 25 ACRES OF LAND, LOCATED ON A MAIN ROAD. SURROUNDED BY MATURE TREES AND RIVER RUNNING NEAR BY. FUTURE DEVELOPMENT POTENTIAL. IDEAL FOR HUNTING, CAMPING, STORAGE & PARKING. LARGE 32 FEET X 32 FEET MECHANIC WORKSHOP/GARAGE WITH 12 FOOT CEILINGS, 2 PORTABLE GARAGES. FENCED IN CHICKEN COOP. 20 FEET X 25 FEET GARAGE. WALKOUT DECK FROM THE KITCHEN OVERLOOKING PROPERTY. COME ENJOY THIS BEAUTIFUL ESCAPE FROM THE CITY LIFE. **EXTRAS** NEW WELL PUMP. ROOF DONE 2015. HOT WATER TANK 2 YEARS OLD. FURNACE OWNED. WINDOWS 2 YEARS OLD.",
@@ -177,12 +177,12 @@
       },
       {
         "icon": "resize-outline",
-        "label": "2036 sqft"
+        "label": "4361 sqft"
       }
     ],
     "agent": {
       "name": "CHAMPS REAL ESTATE BROKERAGE INC.",
-      "image": "https://i.pravatar.cc/100?img=37"
+      "image": "https://i.pravatar.cc/100?img=12"
     },
     "zipcode": "P7G2G2",
     "latitude": 48.48786,

@@ -65,7 +65,7 @@ def convert_property_data(input_json):
             },
             {
                 "icon": "resize-outline",
-                "label": f'{input_json.get("lotArea") if input_json.get("lotArea") not in [None, ""] else fake_lot_area} {input_json.get("lotAreaUnits") if input_json.get("lotAreaUnits") not in [None, ""] else fake_lot_units}'
+                "label": f'{int(input_json.get("lotArea")) if str(input_json.get("lotArea")).isdigit() else int(fake_lot_area)} {input_json.get("lotAreaUnits") if input_json.get("lotAreaUnits") not in [None, ""] else fake_lot_units}'
             }
         ],
         "agent": {
