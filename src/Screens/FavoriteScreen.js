@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+    flexWrap: 'wrap'
   },
   price: {
     fontSize: RFValue(10),
