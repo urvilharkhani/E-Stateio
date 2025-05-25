@@ -28,7 +28,7 @@ export default function SignUpScreen({ navigation }) {
             return;
         }
         // TODO: integrate real sign-up here
-        navigation.replace('Profile');
+        navigation.replace('MainTabs', { screen: 'Home' });
     };
 
     return (
