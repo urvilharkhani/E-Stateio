@@ -13,14 +13,15 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const STORAGE_KEY = '@profile_data';
+const PROFILE_KEY = '@profile_data';
+const CRED_KEY    = '@user_credentials';
 
 export default function SignUpScreen({ navigation }) {
-    const [name, setName]         = useState('');
-    const [email, setEmail]       = useState('');
-    const [phone, setPhone]       = useState('');
+    const [name,     setName]     = useState('');
+    const [email,    setEmail]    = useState('');
+    const [phone,    setPhone]    = useState('');
     const [password, setPassword] = useState('');
-    const [confirm, setConfirm]   = useState('');
+    const [confirm,  setConfirm]  = useState('');
 
     const handleSignUp = async () => {
         if (!name || !email || !phone || !password) {
@@ -32,11 +33,20 @@ export default function SignUpScreen({ navigation }) {
             return;
         }
 
-        const profileData = { name, email, phone };
-        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(profileData));
+        // 1) Save profile data (name, email, phone) under PROFILE_KEY
+        await AsyncStorage.setItem(
+            PROFILE_KEY,
+            JSON.stringify({ name, email, phone })
+        );
 
-        // Navigate into your main app flow
-        navigation.replace('MainTabs');  // or replace('Home') if you have a Home-only stack
+        // 2) Save credentials separately under CRED_KEY
+        await AsyncStorage.setItem(
+            CRED_KEY,
+            JSON.stringify({ email, password })
+        );
+
+        // 3) Enter main app (tabs) and clear auth stack
+        navigation.replace('MainTabs');
     };
 
     return (
@@ -93,9 +103,10 @@ export default function SignUpScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: Platform.OS === 'android'
-            ? StatusBar.currentHeight + 10
-            : 0,
+        paddingTop:
+            Platform.OS === 'android'
+                ? StatusBar.currentHeight + 10
+                : 0,
         alignItems: 'center',
         backgroundColor: '#fff'
     },
