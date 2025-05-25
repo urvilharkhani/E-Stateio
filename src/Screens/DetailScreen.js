@@ -15,7 +15,8 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { addFavorite, removeFavorite, isFavorited } from '../common/storage';
+// import { addFavorite, removeFavorite, isFavorited } from '../common/storage';
+import { addFavorite, removeFavorite, isFavorited } from '../common/sqlliteService';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 

@@ -15,7 +15,8 @@ import { RFValue } from 'react-native-responsive-fontsize';
 // import { getFavorites, removeFavorite } from '../common/storage';
 import CustomModal from '../component/CustomModal';
 import { SwipeListView } from 'react-native-swipe-list-view';
-import { getFavorites, removeFavorite } from '../common/firebaseService';
+// import { getFavorites, removeFavorite } from '../common/firebaseService';
+import { getFavorites, removeFavorite } from '../common/sqlliteService';
 
 const FavoritesScreen = () => {
   const [favorites, setFavorites] = useState([]);
