@@ -1,6 +1,4 @@
-// src/screens/LoginScreen.js
 import React, { useState } from 'react';
-import { Ionicons } from '@expo/vector-icons';
 import {
     SafeAreaView,
     View,
@@ -13,19 +11,22 @@ import {
     Platform,
     StatusBar
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const CRED_KEY = '@user_credentials';
 
 export default function LoginScreen({ navigation }) {
-    const [email, setEmail]       = useState('');
+    const [email,    setEmail]    = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
-        if (!email || !password) {
-            Alert.alert('Error', 'Please enter email and password');
-            return;
+    const handleLogin = async () => {
+        const credsJson = await AsyncStorage.getItem(CRED_KEY);
+        const creds = credsJson ? JSON.parse(credsJson) : {};
+        if (creds.email === email && creds.password === password) {
+            navigation.replace('MainTabs');
+        } else {
+            Alert.alert('Login failed', 'Invalid email or password');
         }
-        // TODO: integrate real auth here
-        navigation.replace('MainTabs', { screen: 'Home' });
     };
 
     return (
@@ -48,17 +49,11 @@ export default function LoginScreen({ navigation }) {
                     onChangeText={setPassword}
                 />
                 <Button title="Log In" onPress={handleLogin} />
-                {/* Forgot password icon/link */}
                 <TouchableOpacity
-                    style={styles.forgotRow}
-                    onPress={() => navigation.navigate('SignUp')}
+                    onPress={() => navigation.navigate('ForgotPassword')}
+                    style={styles.forgotLink}
                 >
-                    <Ionicons
-                        name="help-circle-outline"
-                        size={20}
-                        color="#007AFF"
-                    />
-                    <Text style={styles.forgotText}> Forgot password?</Text>
+                    <Text style={styles.forgotText}>Forgot password?</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.footer}>
@@ -74,7 +69,10 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 10 : 0,
+        paddingTop:
+            Platform.OS === 'android'
+                ? StatusBar.currentHeight + 10
+                : 0,
         alignItems: 'center',
         backgroundColor: '#fff'
     },
@@ -94,15 +92,13 @@ const styles = StyleSheet.create({
         paddingVertical: 8,
         marginBottom: 16
     },
-    forgotRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
+    forgotLink: {
         marginTop: 8,
-        alignSelf: 'flex-start'
+        alignSelf: 'flex-end'
     },
     forgotText: {
         color: '#007AFF',
-        marginLeft: 4
+        fontSize: 14
     },
     footer: {
         flexDirection: 'row',
