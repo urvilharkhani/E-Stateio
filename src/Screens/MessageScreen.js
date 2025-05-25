@@ -246,7 +246,7 @@ const renderItem = ({ item }) => {
 
         <KeyboardAvoidingView
           behavior="padding"
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 50  : 0}
         >
           <View style={styles.inputContainer}>
             <TextInput

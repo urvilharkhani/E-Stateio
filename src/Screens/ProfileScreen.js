@@ -37,8 +37,7 @@ export default function ProfileScreen() {
     const uri = require('../assets/images/defaultProfileIcon.png');
     const [avatar, setAvatar] = useState(uri);
 
-    // reload profile each time screen focuses
-   useFocusEffect(
+  useFocusEffect(
   useCallback(() => {
     (async () => {
       const email = await AsyncStorage.getItem('@logged_in_email');
@@ -47,12 +46,13 @@ export default function ProfileScreen() {
       const profile = await getUserProfile(email);
       if (profile) {
         setName(profile.name || '');
-        setLocation('Thunder Bay, ON'); // or profile.address if you store it
-        setAvatar('https://i.pravatar.cc/100?img=3'); // optionally use from DB
+        setLocation('Thunder Bay, ON');
+        setAvatar(profile.profile_image ? { uri: profile.profile_image } : uri);
       }
     })();
   }, [])
 );
+
 
 
     const handleLogout = () => {
@@ -102,8 +102,8 @@ export default function ProfileScreen() {
 
             <View style={styles.container}>
                 <View style={styles.profile}>
-                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                        <Image source={typeof avatar === 'string' ? { uri: avatar } : avatar} style={styles.avatar} />
+                    <View style={{ alignItems: 'center', justifyContent: 'center'}}>
+                        <Image source={typeof avatar === 'string' ? { uri: uri } : uri} style={styles.avatar} />
                     </View>
                     <Text style={styles.name}>{name}</Text>
                     {location ? <Text style={styles.location}>{location}</Text> : null}

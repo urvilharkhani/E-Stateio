@@ -15,128 +15,140 @@ import {
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { getProfile, getUserProfile, updateProfile, updateUserProfile } from '../common/sqlliteService'; 
+import {
+  getUserProfile,
+  updateUserProfile
+} from '../common/sqlliteService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function PersonalDataScreen() {
   const navigation = useNavigation();
+  const defaultImage = require('../assets/images/defaultProfileIcon.png');
+
   const [profile, setProfile] = useState({
     name: '',
     email: '',
     phone: '',
     address: 'Thunder Bay, ON',
-    image: 'https://i.pravatar.cc/100?img=3',
+    image: defaultImage,
   });
 
   useFocusEffect(
-  React.useCallback(() => {
-    (async () => {
-      const storedEmail = await AsyncStorage.getItem('@logged_in_email');
-      if (!storedEmail) return;
+    React.useCallback(() => {
+      (async () => {
+        const storedEmail = await AsyncStorage.getItem('@logged_in_email');
+        if (!storedEmail) return;
 
-      const dbProfile = await getUserProfile(storedEmail); 
-      if (dbProfile) {
-        setProfile(prev => ({
-          ...prev,
-          name: dbProfile.name,
-          email: dbProfile.email,
-          phone: dbProfile.phone,
-        }));
-      }
-    })();
-  }, [])
-);
+        const dbProfile = await getUserProfile(storedEmail);
+        if (dbProfile) {
+          setProfile(prev => ({
+            ...prev,
+            name: dbProfile.name,
+            email: dbProfile.email,
+            phone: dbProfile.phone,
+            image: dbProfile.image ? { uri: dbProfile.image } : defaultImage,
+          }));
+        }
+      })();
+    }, [])
+  );
 
-
-  // Image picker handler
   const handlePickImage = async () => {
-    // Ask for permission
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
       Alert.alert('Permission denied', 'We need permission to access your photos.');
       return;
     }
+
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [1, 1],
       quality: 1,
     });
-    if (!result.canceled && result.assets && result.assets.length > 0) {
+
+    if (!result.canceled && result.assets?.length > 0) {
       const uri = result.assets[0].uri;
-      setProfile(prev => ({ ...prev, image: uri }));
-      const stored = await AsyncStorage.getItem(STORAGE_KEY);
-      let data = stored ? JSON.parse(stored) : {};
-      data.image = uri;
-      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      setProfile(prev => ({ ...prev, image: { uri } }));
     }
   };
 
   const handleSave = async () => {
-  const storedEmail = await AsyncStorage.getItem('@logged_in_email');
-  if (!storedEmail) return;
+    const storedEmail = await AsyncStorage.getItem('@logged_in_email');
+    if (!storedEmail) return;
 
-  await updateUserProfile({
-    email: storedEmail,
-    name: profile.name,
-    phone: profile.phone,
-  });
+    let imageToSave = '';
 
-  Alert.alert('Saved!', 'Your personal data was updated.', [
-    { text: 'OK', onPress: () => navigation.goBack() },
-  ]);
-};
+    if (profile.image && profile.image.uri && typeof profile.image.uri === 'string') {
+      imageToSave = profile.image.uri;
+    }
+
+    await updateUserProfile({
+      email: storedEmail,
+      name: profile.name,
+      phone: profile.phone,
+      profile_image: imageToSave,
+    });
+
+    Alert.alert('Saved!', 'Your personal data was updated.', [
+      { text: 'OK', onPress: () => navigation.goBack() },
+    ]);
+  };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={RFValue(20)} color="black" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Personal Data</Text>
-        <TouchableOpacity onPress={handleSave}>
-          <Text style={styles.saveText}>Save</Text>
-        </TouchableOpacity>
-      </View>
+    
+    <SafeAreaView style={{ flex: 1 ,backgroundColor:'#fff'}}>
+      <View style={styles.container}>
 
-        <View style={styles.avatarWrapper}>
-          <Image source={typeof profile.image === 'string' ? { uri: profile.image } : profile.image} style={styles.avatar} />
-          <TouchableOpacity>
-            <Ionicons name="camera" size={RFValue(16)} color="#00C48C" style={styles.cameraIcon} onPress={handlePickImage}/>
+
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="arrow-back" size={RFValue(20)} color="black" />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Personal Data</Text>
+          <TouchableOpacity onPress={handleSave}>
+            <Text style={styles.saveText}>Save</Text>
           </TouchableOpacity>
         </View>
 
-      <View style={styles.inputWrapper}>
-        <Ionicons name="person-outline" size={RFValue(18)} color="#ccc" />
-        <TextInput
-          style={styles.input}
-          value={profile.name}
-          onChangeText={text => setProfile(prev => ({ ...prev, name: text }))}
-          placeholder="Enter your name"
-        />
-      </View>
+        <View style={styles.avatarWrapper}>
+          <Image source={profile.image} style={styles.avatar} />
+          <TouchableOpacity style={styles.cameraIcon} onPress={handlePickImage}>
+            <Ionicons name="camera" size={RFValue(16)} color="#00C48C" />
+          </TouchableOpacity>
+        </View>
 
-      <View style={styles.inputWrapperDisabled}>
-        <Ionicons name="mail-outline" size={RFValue(18)} color="#ccc" />
-        <TextInput style={styles.disabledText} value={profile.email} editable={false} />
-      </View>
+        <View style={styles.inputWrapper}>
+          <Ionicons name="person-outline" size={RFValue(18)} color="#ccc" />
+          <TextInput
+            style={styles.input}
+            value={profile.name}
+            onChangeText={text => setProfile(prev => ({ ...prev, name: text }))}
+            placeholder="Enter your name"
+          />
+        </View>
 
-      <View style={styles.inputWrapper}>
-        <Ionicons name="call-outline" size={RFValue(18)} color="#ccc" />
-        <TextInput
-          style={styles.input}
-          value={profile.phone}
-          onChangeText={text => setProfile(prev => ({ ...prev, phone: text }))}
-          placeholder="Enter your phone"
-          keyboardType="phone-pad"
-        />
-      </View>
+        <View style={styles.inputWrapperDisabled}>
+          <Ionicons name="mail-outline" size={RFValue(18)} color="#ccc" />
+          <TextInput style={styles.disabledText} value={profile.email} editable={false} />
+        </View>
 
-      <View style={styles.inputWrapperDisabled}>
-        <Ionicons name="location-outline" size={RFValue(18)} color="#ccc" />
-        <TextInput style={styles.disabledText} value={profile.address} editable={false} />
-      </View>
-    </SafeAreaView>
+        <View style={styles.inputWrapper}>
+          <Ionicons name="call-outline" size={RFValue(18)} color="#ccc" />
+          <TextInput
+            style={styles.input}
+            value={profile.phone}
+            onChangeText={text => setProfile(prev => ({ ...prev, phone: text }))}
+            placeholder="Enter your phone"
+            keyboardType="phone-pad"
+          />
+        </View>
+
+        <View style={styles.inputWrapperDisabled}>
+          <Ionicons name="location-outline" size={RFValue(18)} color="#ccc" />
+          <TextInput style={styles.disabledText} value={profile.address} editable={false} />
+        </View>
+      </View>   </SafeAreaView>
   );
 }
 

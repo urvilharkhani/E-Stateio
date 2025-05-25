@@ -56,6 +56,10 @@ const DetailScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+    <View style={{flex:1}}>
+ <View>
+
+ 
       <FlatList
         data={validImages}
         horizontal
@@ -65,6 +69,7 @@ const DetailScreen = () => {
         renderItem={({ item }) => (
           <View style={styles.carouselImage}>
             <Image source={{ uri: item }} style={{ width: "100%", height: '100%' }} />
+              
           </View>
         )}
         onScroll={e => {
@@ -76,7 +81,7 @@ const DetailScreen = () => {
         }}
         scrollEventThrottle={16}
       />
-      <View style={styles.dotsContainer}>
+    <View style={styles.dotsContainer}>
         {imagesToShow.map((_, idx) => (
           <View
             key={idx}
@@ -87,7 +92,7 @@ const DetailScreen = () => {
           />
         ))}
       </View>
-
+</View>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
         style={[styles.iconButton, { left: RFValue(20) }]}
@@ -105,8 +110,9 @@ const DetailScreen = () => {
           style={[styles.iconImage, { tintColor: favorite ? 'red' : 'white' }]}
         />
       </TouchableOpacity>
+ 
 
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <Text style={styles.title}>{item.title}</Text>
 
@@ -168,6 +174,7 @@ const DetailScreen = () => {
 
         </View>
       </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
@@ -181,8 +188,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: SCREEN_WIDTH,
-    marginTop: RFValue(-35),
-    height: RFValue(20),
+    position:'absolute',
+    bottom:0
+    // marginTop: RFValue(-35),
+    // height: RFValue(20),
   },
   dot: {
     width: RFValue(8),
@@ -199,17 +208,17 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   carouselImage: {
     width: SCREEN_WIDTH,
-    height: RFValue(400),
+    height: RFValue(250),
     resizeMode: 'cover',
   },
   iconButton: {
     position: 'absolute',
-    top: RFValue(30),
+    top: RFValue(15),
     backgroundColor: 'grey',
     justifyContent: 'center',
     alignItems: 'center',

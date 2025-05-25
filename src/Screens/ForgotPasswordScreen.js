@@ -12,6 +12,7 @@ import {
     StatusBar
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const CRED_KEY = '@user_credentials';
 
@@ -35,7 +36,7 @@ export default function ForgotPasswordScreen({ navigation }) {
             Alert.alert('Error', 'Email not found');
             return;
         }
-        // Update password only
+    
         creds.password = newPassword;
         await AsyncStorage.setItem(CRED_KEY, JSON.stringify(creds));
 
@@ -72,7 +73,9 @@ export default function ForgotPasswordScreen({ navigation }) {
                     value={confirm}
                     onChangeText={setConfirm}
                 />
-                <Button title="Reset Password" onPress={handleReset} />
+                  <TouchableOpacity style={{backgroundColor:'#007AFF',padding:RFValue(10),justifyContent:'center',alignItems:'center',borderRadius:RFValue(10)}} onPress={handleReset}>
+                    <Text style={{color:'white',fontWeight:'600',fontSize:RFValue(12)}}>{'Reset Password'}</Text>
+                </TouchableOpacity>
             </View>
             <TouchableOpacity
                 onPress={() => navigation.goBack()}

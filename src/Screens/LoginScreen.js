@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { validateUserLogin, getDb } from '../common/sqlliteService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState('');
@@ -56,7 +57,7 @@ const deleteAllData = async () => {
       console.log('⭐ FAVORITES:', favorites);
       console.log('💬 MESSAGES:', messages);
     } catch (error) {
-      console.error('❌ DEBUG ERROR:', error);
+      console.error(' DEBUG ERROR:', error);
     }
   };
 
@@ -85,7 +86,9 @@ const deleteAllData = async () => {
                     value={password}
                     onChangeText={setPassword}
                 />
-                <Button title="Log In" onPress={handleLogin} />
+                <TouchableOpacity style={{backgroundColor:'#007AFF',padding:RFValue(10),justifyContent:'center',alignItems:'center',borderRadius:RFValue(10)}} onPress={handleLogin}>
+                    <Text style={{color:'white',fontWeight:'600',fontSize:RFValue(12)}}>{'Log In'}</Text>
+                </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('ForgotPassword')}
                     style={styles.forgotLink}

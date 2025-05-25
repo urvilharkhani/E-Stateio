@@ -1,13 +1,15 @@
 import * as SQLite from 'expo-sqlite';
 
 let dbPromise = null;
+
 async function getDb() {
   if (!dbPromise) {
     dbPromise = SQLite.openDatabaseAsync('app_data.db');
     const db = await dbPromise;
+
     await db.execAsync(`
       PRAGMA journal_mode = WAL;
-      
+
       CREATE TABLE IF NOT EXISTS favorites (
         id TEXT PRIMARY KEY NOT NULL,
         data TEXT NOT NULL
@@ -28,12 +30,21 @@ async function getDb() {
         timestamp TEXT NOT NULL
       );
     `);
+
+    // ✅ Add profile_image column if it doesn't exist
+    const columns = await db.getAllAsync('PRAGMA table_info(users)');
+    const hasProfileImage = columns.some(col => col.name === 'profile_image');
+    if (!hasProfileImage) {
+      await db.runAsync('ALTER TABLE users ADD COLUMN profile_image TEXT DEFAULT ""');
+    }
+
     return db;
   }
+
   return dbPromise;
 }
 
-// Favorites Logic
+// ⭐ Favorites Logic
 export const getFavorites = async () => {
   const db = await getDb();
   const rows = await db.getAllAsync('SELECT * FROM favorites');
@@ -60,39 +71,38 @@ export const isFavorited = async (itemId) => {
   return !!row;
 };
 
-// User Logic
-export const signUpUser = async ({ name, email, phone, password }) => {
+// 👤 User Logic
+export const signUpUser = async ({ name, email, phone, password, profile_image }) => {
   const db = await getDb();
+  const defaultImage = profile_image || 'https://i.pravatar.cc/100?img=3'; // Default fallback
   await db.runAsync(
-    'INSERT INTO users (email, name, phone, password) VALUES (?, ?, ?, ?)',
-    [email, name, phone, password]
+    'INSERT INTO users (email, name, phone, password, profile_image) VALUES (?, ?, ?, ?, ?)',
+    [email, name, phone, password, defaultImage]
   );
 };
 
 export const validateUserLogin = async (email, password) => {
   const db = await getDb();
-  const row = await db.getFirstAsync(
+  return await db.getFirstAsync(
     'SELECT * FROM users WHERE email = ? AND password = ?',
     [email, password]
   );
-  return row;
 };
 
 export const getUserProfile = async (email) => {
   const db = await getDb();
-  const row = await db.getFirstAsync('SELECT * FROM users WHERE email = ?', email);
-  return row;
+  return await db.getFirstAsync('SELECT * FROM users WHERE email = ?', email);
 };
 
-export const updateUserProfile = async ({ email, name, phone }) => {
+export const updateUserProfile = async ({ email, name, phone, profile_image }) => {
   const db = await getDb();
   await db.runAsync(
-    'UPDATE users SET name = ?, phone = ? WHERE email = ?',
-    [name, phone, email]
+    'UPDATE users SET name = ?, phone = ?, profile_image = ? WHERE email = ?',
+    [name, phone, profile_image || '', email]
   );
 };
 
-// Chat Message Logic
+// 💬 Chat Message Logic
 export const saveMessage = async ({ id, property_id, sender, text, timestamp }) => {
   const db = await getDb();
   await db.runAsync(
@@ -108,4 +118,5 @@ export const getMessagesForProperty = async (property_id) => {
     [property_id]
   );
 };
+
 export { getDb };

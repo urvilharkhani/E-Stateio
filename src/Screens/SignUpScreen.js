@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { signUpUser } from '../common/sqlliteService'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export default function SignUpScreen({ navigation }) {
   const [name, setName] = useState('');
@@ -80,7 +81,10 @@ export default function SignUpScreen({ navigation }) {
           value={confirm}
           onChangeText={setConfirm}
         />
-        <Button title="Sign Up" onPress={handleSignUp} />
+        <TouchableOpacity style={{backgroundColor:'#007AFF',padding:RFValue(10),justifyContent:'center',alignItems:'center',borderRadius:RFValue(10)}} onPress={handleSignUp}>
+                    <Text style={{color:'white',fontWeight:'600',fontSize:RFValue(12)}}>{'Sign Up'}</Text>
+                </TouchableOpacity>
+        
       </View>
       <View style={styles.footer}>
         <Text>Already have an account?</Text>

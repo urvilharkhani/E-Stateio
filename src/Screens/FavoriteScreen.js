@@ -96,7 +96,10 @@ const FavoritesScreen = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.mainContianer}>
+      <View style={styles.container}>
+
+      
       <Text style={styles.header}>Favorites</Text>
       {favorites.length === 0 ? (
         <View style={styles.emptyContainer}>
@@ -125,6 +128,7 @@ const FavoritesScreen = () => {
         onConfirm={handleRemove}
         message="Are you sure you want to remove this from favorites?"
       />
+      </View>
     </SafeAreaView>
   );
 };
@@ -132,11 +136,16 @@ const FavoritesScreen = () => {
 export default FavoritesScreen;
 
 const styles = StyleSheet.create({
+  mainContianer:{
+    flex:1,
+      backgroundColor: '#fff',
+  },
   container: {
     flex: 1,
+    paddingHorizontal:RFValue(16),
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 10 : 0,
-    backgroundColor: '#fff',
-    padding: RFValue(16),
+   
+
   },
   header: {
     fontSize: RFValue(18),
@@ -206,6 +215,7 @@ const styles = StyleSheet.create({
     fontSize: RFValue(14),
     color: '#888',
     marginTop: RFValue(10),
+    textAlign:'center'
   },
   exploreButton: {
     marginTop: RFValue(15),
@@ -234,7 +244,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: RFValue(75),
     backgroundColor: '#FF6B6B',
-    paddingRight:RFValue(8),
+    paddingRight:Platform.OS=='android' ? RFValue(8):RFValue(8),
     borderTopRightRadius: RFValue(12),
     borderBottomRightRadius: RFValue(12),
     height: '100%',
