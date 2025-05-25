@@ -110,10 +110,8 @@ const HomeScreen = () => {
               </TouchableOpacity>
             )}
           />
-        ) : (<View style={styles.emptyWrapper}>
-
+        ) : (
           <Text style={styles.emptyText}>Not at the moment</Text>
-          </View>
         )}
 
         <View style={styles.sectionHeader}>
@@ -138,10 +136,7 @@ const HomeScreen = () => {
             )}
           />
         ) : (
-          <View style={styles.emptyWrapper}>
-
-            <Text style={styles.emptyText}>Not at the moment</Text>
-          </View>
+          <Text style={styles.emptyText}>Not at the moment</Text>
         )}
       </ScrollView>
     </SafeAreaView>
@@ -225,12 +220,11 @@ const styles = StyleSheet.create({
   listings: {
     paddingBottom: RFValue(10),
   },
-  emptyWrapper:{flex:2,justifyContent:'center',alignItems:'center'},
   emptyText: {
     fontSize: RFValue(14),
     color: '#999',
     fontStyle: 'italic',
     paddingLeft: RFValue(10),
-    marginVertical: RFValue(10),
+    marginBottom: RFValue(10),
   },
 });

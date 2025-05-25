@@ -24,6 +24,7 @@ const DetailScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const { item, category } = route.params;
+
   const [favorite, setFavorite] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -136,8 +137,7 @@ const DetailScreen = () => {
               <Text style={styles.agentName}>{item.agent.name}</Text>
               <Text style={styles.agentRole}>Agent</Text>
             </View>
-            <TouchableOpacity style={styles.messageBtn}  onPress={() => navigation.navigate('MessageScreen', { agent: item.agent, property: item })}
->
+            <TouchableOpacity style={styles.messageBtn}>
               <Text style={styles.messageText}>Message</Text>
             </TouchableOpacity>
           </View>
