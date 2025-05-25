@@ -54,10 +54,10 @@ export default function AppNavigator() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="MainTabs" component={MainTabs} />
         <Stack.Screen name="Detail" component={DetailScreen} />
-      <Stack.Screen name="PersonalData" component={PersonalDataScreen} />
-     <Stack.Screen name="MessageScreen" component={MessageScreen} />
-     <Stack.Screen name="Notification" component={NotificationScreen} />
-</Stack.Navigator>
+        <Stack.Screen name="PersonalData" component={PersonalDataScreen} />
+        <Stack.Screen name="MessageScreen" component={MessageScreen} />
+        <Stack.Screen name="Notification" component={NotificationScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
