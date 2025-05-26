@@ -64,7 +64,7 @@ export const getChatForProperty = async (propertyId) => {
   try {
     return await getMessagesForProperty(propertyId.toString());
   } catch (error) {
-    console.error('❌ Failed to load chat from SQLite:', error);
+    console.error('Failed to load chat from SQLite:', error);
     return [];
   }
 };
@@ -86,6 +86,6 @@ export const saveChatForProperty = async (propertyId, messages) => {
       });
     }
   } catch (error) {
-    console.error('❌ Failed to save chat to SQLite:', error);
+    console.error(' Failed to save chat to SQLite:', error);
   }
 };

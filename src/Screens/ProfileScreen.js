@@ -17,18 +17,9 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getUserProfile } from '../common/sqlliteService';
+import { getUserProfile,getUnreadNotificationCount} from '../common/sqlliteService';
 
-const STORAGE_KEY = '@profile_data';
-// console.log("STORAGE_KEY",STORAGE_KEY)
-const options = [
-    { id: '1', label: 'Personal data', icon: 'person-outline', screen: 'PersonalData' },
-    { id: '2', label: 'Settings', icon: 'settings-outline' },
-    { id: '3', label: 'Notification', icon: 'notifications-outline' },
-    { id: '4', label: 'Privacy & policy', icon: 'shield-checkmark-outline' },
-    { id: '5', label: 'About us', icon: 'information-circle-outline' },
-    { id: '6', label: 'FAQ', icon: 'help-circle-outline' },
-];
+
 
 export default function ProfileScreen() {
     const navigation = useNavigation();
@@ -37,23 +28,22 @@ export default function ProfileScreen() {
     const uri = require('../assets/images/defaultProfileIcon.png');
     const [avatar, setAvatar] = useState(uri);
 
-  useFocusEffect(
-  useCallback(() => {
-    (async () => {
-      const email = await AsyncStorage.getItem('@logged_in_email');
-      if (!email) return;
+const [unreadCount, setUnreadCount] = useState(0);
 
-      const profile = await getUserProfile(email);
-      if (profile) {
-        setName(profile.name || '');
-        setLocation('Thunder Bay, ON');
-        setAvatar(profile.profile_image ? { uri: profile.profile_image } : uri);
-      }
-    })();
-  }, [])
-);
-
-
+const options = [
+    { id: '1', label: 'Personal data', icon: 'person-outline', screen: 'PersonalData' },
+    { id: '2', label: 'Settings', icon: 'settings-outline' },
+   {
+  id: '3',
+  label: 'Notification',
+  icon: 'notifications-outline',
+  screen: 'Notification',
+  showBadge: unreadCount > 0, 
+     },
+    { id: '4', label: 'Privacy & policy', icon: 'shield-checkmark-outline' },
+    { id: '5', label: 'About us', icon: 'information-circle-outline' },
+    { id: '6', label: 'FAQ', icon: 'help-circle-outline' },
+];
 
     const handleLogout = () => {
         Alert.alert(
@@ -64,35 +54,86 @@ export default function ProfileScreen() {
                 {
                     text: 'Log Out',
                     style: 'destructive',
-                   onPress: async () => {
-  await AsyncStorage.removeItem('@logged_in_email');
-  navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
-}
+                    onPress: async () => {
+                        await AsyncStorage.removeItem('@logged_in_email');
+                        navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
+                    }
 
                 }
             ]
         );
     };
 
-    const renderItem = ({ item }) => (
-        <TouchableOpacity
-            style={styles.option}
-            onPress={() => item.screen && navigation.navigate(item.screen)}
-        >
-            <View style={styles.iconWrapper}>
-                <Ionicons name={item.icon} size={RFValue(18)} color="#00C48C" />
-            </View>
-            <Text style={styles.optionLabel}>{item.label}</Text>
-            <Ionicons name="chevron-forward" size={RFValue(16)} color="#aaa" />
-        </TouchableOpacity>
-    );
+   const renderItem = ({ item }) => (
+   <TouchableOpacity
+    style={styles.option}
+    onPress={() => {
+      if (item.screen) {
+        navigation.navigate(item.screen);
+      } else {
+        Alert.alert('Coming Soon', 'This feature will be available in the next update.');
+      }
+    }}
+  >
+
+    <View style={styles.iconWrapper}>
+      <Ionicons name={item.icon} size={RFValue(18)} color="#00C48C" />
+    </View>
+    
+    <View style={styles.labelRow}>
+      <Text style={styles.optionLabel}>{item.label}</Text>
+    {item.showBadge && (
+  <View style={styles.badgeCount}>
+    <Text style={styles.badgeText}>{unreadCount}</Text>
+  </View>
+)}
+
+    </View>
+
+    <Ionicons name="chevron-forward" size={RFValue(16)} color="#aaa" />
+  </TouchableOpacity>
+);
+
+    
+// useFocusEffect(
+//   useCallback(() => {
+//     (async () => {
+//       const email = await AsyncStorage.getItem('@logged_in_email');
+//       const profile = await getUserProfile(email);
+//       if (profile) {
+//         setName(profile.name || '');
+//         setAvatar(profile.profile_image ? { uri: profile.profile_image } : uri);
+//       }
+
+//       // get unread notification count
+//       const count = await getUnreadNotificationCount();
+//       setUnreadCount(count);
+//     })();
+//   }, [])
+// );
+useFocusEffect(
+  useCallback(() => {
+    (async () => {
+      const email = await AsyncStorage.getItem('@logged_in_email');
+      const profile = await getUserProfile(email);
+      if (profile) {
+        setName(profile.name || '');
+        setAvatar(profile.profile_image ? { uri: profile.profile_image } : uri);
+      }
+
+      const count = await getUnreadNotificationCount();
+      setUnreadCount(count);
+    })();
+  }, [])
+);
+
 
     return (
         <SafeAreaView style={styles.mainContainer}>
             <StatusBar barStyle={Platform.OS === 'ios' ? 'dark-content' : 'default'} />
 
             <View style={styles.header}>
-                {/* Left spacer to balance the logout icon on the right */}
+                
                 <View style={{ width: RFValue(30) }} />
                 <Text style={styles.headerTitle}>Profile</Text>
                 <TouchableOpacity onPress={handleLogout} style={styles.headerLogoutIcon}>
@@ -102,8 +143,8 @@ export default function ProfileScreen() {
 
             <View style={styles.container}>
                 <View style={styles.profile}>
-                    <View style={{ alignItems: 'center', justifyContent: 'center'}}>
-                        <Image source={typeof avatar === 'string' ? { uri: uri } : uri} style={styles.avatar} />
+                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                        <Image source={typeof avatar === 'string' ? { uri: avatar } : avatar} style={styles.avatar} />
                     </View>
                     <Text style={styles.name}>{name}</Text>
                     {location ? <Text style={styles.location}>{location}</Text> : null}
@@ -193,4 +234,30 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: RFValue(14),
     },
+    labelRow: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  flex: 1,
+},
+
+badgeDot: {
+  width: RFValue(8),
+  height: RFValue(8),
+  borderRadius: RFValue(4),
+  backgroundColor: 'red',
+  marginLeft: RFValue(6),
+},
+badgeCount: {
+  backgroundColor: 'red',
+  borderRadius: RFValue(10),
+  paddingHorizontal: RFValue(6),
+  paddingVertical: RFValue(2),
+  marginLeft: RFValue(6),
+},
+badgeText: {
+  color: 'white',
+  fontSize: RFValue(10),
+  fontWeight: 'bold',
+},
+
 });

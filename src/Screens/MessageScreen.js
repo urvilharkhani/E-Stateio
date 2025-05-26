@@ -15,10 +15,11 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { insertNotification } from '../common/sqlliteService'
 
 // import { getChatForProperty, saveChatForProperty } from '../common/chatStorage';
 import { saveMessage, getMessagesForProperty } from '../common/sqlliteService';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // For logged in email
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
 const MessageScreen = () => {
   const { agent, property } = useRoute().params;
@@ -104,6 +105,69 @@ useEffect(() => {
     };
   }, []);
 
+const sendMessage = async () => {
+  if (!inputText.trim()) return;
+
+  const loggedInEmail = await AsyncStorage.getItem('@logged_in_email');
+  const userMessage = {
+    id: Date.now().toString(),
+    property_id: property.id.toString(),
+    sender: 'user',
+    text: inputText,
+    timestamp: new Date().toISOString(),
+  };
+
+  await saveMessage(userMessage);
+  setMessages(prev => [...prev, userMessage]);
+  setInputText('');
+
+  if (!hasBotReplied.current) {
+    hasBotReplied.current = true;
+    setIsTyping(true);
+
+    setTimeout(async () => {
+      const botMessage = {
+        id: Date.now().toString() + '_bot',
+        property_id: property.id.toString(),
+        sender: 'bot',
+        text: `${agent.name} will be with you shortly.`,
+        timestamp: new Date().toISOString(),
+      };
+      await saveMessage(botMessage);
+      setMessages(prev => [...prev, botMessage]);
+      setIsTyping(false);
+    }, 3000);
+  }
+
+  const followupText = 'Great! Ask any questions you have about the property.';
+  const followupId = `${property.id}_followup`;
+
+  setTimeout(async () => {
+    const existingMessages = await getMessagesForProperty(property.id);
+    const alreadyExists = existingMessages.some(msg => msg.id === followupId);
+
+    if (!alreadyExists) {
+      const agentMessage = {
+        id: followupId,
+        property_id: property.id.toString(),
+        sender: 'agent',
+        text: followupText,
+        timestamp: new Date().toISOString(),
+      };
+
+      await saveMessage(agentMessage);
+      await insertNotification({
+        title: `Reply from ${agent.name}`,
+        message: followupText,
+        date: new Date().toLocaleDateString(),
+      });
+
+      setMessages(prev => [...prev, agentMessage]);
+    }
+  }, 30000);
+};
+
+
   // const sendMessage = () => {
   //   if (!inputText.trim()) return;
 
@@ -153,52 +217,52 @@ useEffect(() => {
   //   }, 30000);
   // };
 
-  const sendMessage = async () => {
-  if (!inputText.trim()) return;
+//   const sendMessage = async () => {
+//   if (!inputText.trim()) return;
 
-  const loggedInEmail = await AsyncStorage.getItem('@logged_in_email');
-  const userMessage = {
-    id: Date.now().toString(),
-    property_id: property.id.toString(),
-    sender: 'user',
-    text: inputText,
-    timestamp: new Date().toISOString(),
-  };
+//   const loggedInEmail = await AsyncStorage.getItem('@logged_in_email');
+//   const userMessage = {
+//     id: Date.now().toString(),
+//     property_id: property.id.toString(),
+//     sender: 'user',
+//     text: inputText,
+//     timestamp: new Date().toISOString(),
+//   };
 
-  await saveMessage(userMessage);
-  setMessages(prev => [...prev, userMessage]);
-  setInputText('');
+//   await saveMessage(userMessage);
+//   setMessages(prev => [...prev, userMessage]);
+//   setInputText('');
 
-  if (!hasBotReplied.current) {
-    hasBotReplied.current = true;
-    setIsTyping(true);
+//   if (!hasBotReplied.current) {
+//     hasBotReplied.current = true;
+//     setIsTyping(true);
 
-    setTimeout(async () => {
-      const botMessage = {
-        id: Date.now().toString() + '_bot',
-        property_id: property.id.toString(),
-        sender: 'bot',
-        text: `${agent.name} will be with you shortly.`,
-        timestamp: new Date().toISOString(),
-      };
-      await saveMessage(botMessage);
-      setMessages(prev => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 3000);
-  }
+//     setTimeout(async () => {
+//       const botMessage = {
+//         id: Date.now().toString() + '_bot',
+//         property_id: property.id.toString(),
+//         sender: 'bot',
+//         text: `${agent.name} will be with you shortly.`,
+//         timestamp: new Date().toISOString(),
+//       };
+//       await saveMessage(botMessage);
+//       setMessages(prev => [...prev, botMessage]);
+//       setIsTyping(false);
+//     }, 3000);
+//   }
 
-  setTimeout(async () => {
-    const agentMessage = {
-      id: Date.now().toString() + '_followup',
-      property_id: property.id.toString(),
-      sender: 'agent',
-      text: 'Great! Ask any questions you have about the property.',
-      timestamp: new Date().toISOString(),
-    };
-    await saveMessage(agentMessage);
-    setMessages(prev => [...prev, agentMessage]);
-  }, 30000);
-};
+//   setTimeout(async () => {
+//     const agentMessage = {
+//       id: Date.now().toString() + '_followup',
+//       property_id: property.id.toString(),
+//       sender: 'agent',
+//       text: 'Great! Ask any questions you have about the property.',
+//       timestamp: new Date().toISOString(),
+//     };
+//     await saveMessage(agentMessage);
+//     setMessages(prev => [...prev, agentMessage]);
+//   }, 30000);
+// };
 const renderItem = ({ item }) => {
     if (item.sender === 'system') {
       return (
@@ -246,7 +310,7 @@ const renderItem = ({ item }) => {
 
         <KeyboardAvoidingView
           behavior="padding"
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 50  : 0}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 50  : 20}
         >
           <View style={styles.inputContainer}>
             <TextInput

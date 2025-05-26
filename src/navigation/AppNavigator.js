@@ -1,6 +1,6 @@
 // src/navigation/AppNavigator.js
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
@@ -15,11 +15,29 @@ import DetailScreen from '../Screens/DetailScreen';
 import PersonalDataScreen from '../Screens/PersonalDataScreen';
 import MessageScreen from '../Screens/MessageScreen';
 import NotificationScreen from '../Screens/NotificationScreen';
+import { getUnreadNotificationCount } from '../common/sqlliteService';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function MainTabs() {
+function MainTabs({ route }) {
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useFocusEffect(
+    useCallback(() => {
+      const checkUnread = async () => {
+        const rows = await getUnreadNotificationCount();
+        setUnreadCount(rows);
+      };
+      checkUnread();
+    }, [])
+  );
+
+  useEffect(() => {
+    if (route?.params?.clearBadge) {
+      setUnreadCount(0);
+    }
+  }, [route?.params?.clearBadge]);
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -37,7 +55,17 @@ function MainTabs() {
         >
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Favorites" component={FavoriteScreen} />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
+            <Tab.Screen
+                name="Profile"
+                component={ProfileScreen}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons name="person-outline" size={size} color={color} />
+                    ),
+                    tabBarBadge: unreadCount > 0 ? unreadCount : undefined,
+                }}
+            />
+
         </Tab.Navigator>
     );
 }
@@ -46,7 +74,7 @@ export default function AppNavigator() {
     return (
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName="Login"               // start at the Login screen
+                initialRouteName="Login"               
                 screenOptions={{ headerShown: false }}
             >
                 {/* Authentication */}
@@ -55,7 +83,8 @@ export default function AppNavigator() {
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
 
                 {/* Main app */}
-                <Stack.Screen name="MainTabs" component={MainTabs} />
+                <Stack.Screen name="MainTabs">{(props) => <MainTabs {...props} />}</Stack.Screen>
+
 
                 {/* Detail and nested screens */}
                 <Stack.Screen name="Detail" component={DetailScreen} />

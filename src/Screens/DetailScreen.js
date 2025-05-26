@@ -30,12 +30,12 @@ const DetailScreen = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const imagesToShow = item.images && item.images.length > 0 ? item.images : [item.image];
-  // console.log("imagesToShow",imagesToShow);
+  
 
   const validImages = imagesToShow.filter(
     uri => typeof uri === 'string' && uri.length > 0
   );
-  // console.log("validImages",validImages);
+
 
   useEffect(() => {
     const checkFavorite = async () => {
@@ -190,8 +190,7 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     position:'absolute',
     bottom:0
-    // marginTop: RFValue(-35),
-    // height: RFValue(20),
+    
   },
   dot: {
     width: RFValue(8),

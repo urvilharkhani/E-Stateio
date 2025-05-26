@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   View,
   Text,
@@ -11,46 +11,47 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
-
-const staticNotifications = [
-  {
-    id: '1',
-    icon: 'chatbubble-ellipses-outline',
-    title: 'Reply Message',
-    message: 'Sebastian reply your message',
-    date: 'Mon',
-    color: '#00C48C',
-  },
-  {
-    id: '2',
-    icon: 'home-outline',
-    title: 'New Property Home',
-    message: 'Hi, some new property for home in ...',
-    date: 'Sun',
-    color: '#4A90E2',
-  },
-  {
-    id: '3',
-    icon: 'business-outline',
-    title: 'New Property Villa',
-    message: 'Hi, some new property for villa in ...',
-    date: '2 Feb',
-    color: '#F5A623',
-  },
-  {
-    id: '4',
-    icon: 'home-sharp',
-    title: 'New Property Apartment',
-    message: 'Hi, some new property for apart ...',
-    date: '10 Jan',
-    color: '#FF6C6C',
-  },
-];
+import { getAllNotifications, markAllNotificationsRead } from '../common/sqlliteService';
+import { useFocusEffect } from '@react-navigation/native';
 
 const NotificationScreen = ({ navigation }) => {
+  const [notifications, setNotifications] = useState([]);
+
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     const loadNotifications = async () => {
+  //       const data = await getAllNotifications();
+  //       setNotifications(data);
+  //     };
+  //     loadNotifications();
+  //   }, [])
+  // );
+// useFocusEffect(
+//   useCallback(() => {
+//     const loadNotifications = async () => {
+//       await markAllNotificationsRead();
+//       const data = await getAllNotifications();
+//       setNotifications(data);
+//     };
+//     loadNotifications();
+//   }, [])
+// );
+useFocusEffect(
+  React.useCallback(() => {
+    const updateNotifications = async () => {
+      await markAllNotificationsRead();
+      const data = await getAllNotifications();
+      setNotifications(data);
+
+      navigation.setParams({ clearBadge: true });
+    };
+
+    updateNotifications();
+  }, [])
+);
   const renderItem = ({ item }) => (
     <View style={styles.card}>
-      <Ionicons name={item.icon} size={RFValue(20)} color={item.color} />
+      <Ionicons name="notifications-outline" size={RFValue(20)} color="#00C48C" />
       <View style={{ marginLeft: RFValue(10), flex: 1 }}>
         <View style={styles.row}>
           <Text style={styles.title}>{item.title}</Text>
@@ -70,11 +71,17 @@ const NotificationScreen = ({ navigation }) => {
         <Text style={styles.header}>Notification</Text>
       </View>
 
-      <FlatList
-        data={staticNotifications}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-      />
+      {notifications.length === 0 ? (
+        <Text style={{ textAlign: 'center', color: '#888', marginTop: RFValue(20) }}>
+          No notifications yet.
+        </Text>
+      ) : (
+        <FlatList
+          data={notifications}
+          keyExtractor={(item) => item.id}
+          renderItem={renderItem}
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -84,7 +91,7 @@ export default NotificationScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop:Platform.OS=='android' ? StatusBar.currentHeight+RFValue(10):0,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + RFValue(10) : 0,
     padding: RFValue(16),
     backgroundColor: '#fff',
   },
@@ -102,7 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: RFValue(16),
-    paddingTop:RFValue(10)
+    paddingTop: RFValue(10),
   },
   row: {
     flexDirection: 'row',

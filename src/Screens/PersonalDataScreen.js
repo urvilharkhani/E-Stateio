@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import {
   getUserProfile,
   updateUserProfile
@@ -22,6 +22,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function PersonalDataScreen() {
+
   const navigation = useNavigation();
   const defaultImage = require('../assets/images/defaultProfileIcon.png');
 
@@ -46,7 +47,8 @@ export default function PersonalDataScreen() {
             name: dbProfile.name,
             email: dbProfile.email,
             phone: dbProfile.phone,
-            image: dbProfile.image ? { uri: dbProfile.image } : defaultImage,
+            image: dbProfile.profile_image ? { uri: dbProfile.profile_image } : defaultImage,
+
           }));
         }
       })();
@@ -68,20 +70,19 @@ export default function PersonalDataScreen() {
     });
 
     if (!result.canceled && result.assets?.length > 0) {
-      const uri = result.assets[0].uri;
+      const uri = result?.assets[0].uri;
+      console.log("uri", uri)
       setProfile(prev => ({ ...prev, image: { uri } }));
     }
   };
-
+  console.log("'profile'", profile)
   const handleSave = async () => {
     const storedEmail = await AsyncStorage.getItem('@logged_in_email');
     if (!storedEmail) return;
-
-    let imageToSave = '';
-
-    if (profile.image && profile.image.uri && typeof profile.image.uri === 'string') {
-      imageToSave = profile.image.uri;
-    }
+    const imageToSave =
+      profile.image && typeof profile.image === 'object' && profile.image.uri
+        ? profile.image.uri
+        : '';
 
     await updateUserProfile({
       email: storedEmail,
@@ -95,9 +96,10 @@ export default function PersonalDataScreen() {
     ]);
   };
 
+
   return (
-    
-    <SafeAreaView style={{ flex: 1 ,backgroundColor:'#fff'}}>
+
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
       <View style={styles.container}>
 
 
@@ -112,7 +114,15 @@ export default function PersonalDataScreen() {
         </View>
 
         <View style={styles.avatarWrapper}>
-          <Image source={profile.image} style={styles.avatar} />
+          <Image
+            source={
+              profile.image && typeof profile.image === 'object'
+                ? profile.image
+                : defaultImage
+            }
+            style={styles.avatar}
+          />
+
           <TouchableOpacity style={styles.cameraIcon} onPress={handlePickImage}>
             <Ionicons name="camera" size={RFValue(16)} color="#00C48C" />
           </TouchableOpacity>
@@ -148,7 +158,8 @@ export default function PersonalDataScreen() {
           <Ionicons name="location-outline" size={RFValue(18)} color="#ccc" />
           <TextInput style={styles.disabledText} value={profile.address} editable={false} />
         </View>
-      </View>   </SafeAreaView>
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -156,7 +167,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight +RFValue(5) : 0,
     paddingHorizontal: RFValue(20),
   },
   header: {

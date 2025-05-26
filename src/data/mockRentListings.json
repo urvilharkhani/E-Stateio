@@ -5,7 +5,7 @@
     "location": "Thunder Bay, ON",
     "price": 3200,
     "currency": "CAD",
-    "rating": 3.3,
+    "rating": 5.0,
     "status": "rent",
     "type": "Apartment",
     "description": "Beautiful 3-Bedroom Rental | Available June 1\n\nStep into comfort and convenience with this stunning 3-bedroom, 2-bathroom home offering 1,225 sq ft of modern living space. Located in a peaceful neighbourhood, this bright and spacious unit is perfect for families, professionals, or anyone seeking high-quality living.\n\n Features:\n\n1,225 sq ft of beautifully finished space\n\n3 generous bedrooms and 2 full bathrooms\n\nOpen-concept living/dining/kitchen with plenty of natural light\n\nIn-unit laundry\n\nPremium finishes throughout\n\n Extras Included:\n\n$3200/month \n\nSnow removal and grass cutting included no maintenance hassles\n\nParking available\n\n Available June 15\nDon't miss this opportunity to live in a turn-key home that blends comfort, space, and stress-free living.\n\nContact us today to schedule a viewing or apply!",
@@ -311,7 +311,7 @@
       }
     ],
     "agent": {
-      "name": "Guardian Rental Management Inc.",
+      "name": "Guardian  Management Inc.",
       "image": "https://i.pravatar.cc/100?img=45"
     },
     "zipcode": "P7A6Z7",
