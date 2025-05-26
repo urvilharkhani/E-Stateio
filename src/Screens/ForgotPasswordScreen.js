@@ -9,7 +9,8 @@ import {
     StyleSheet,
     Alert,
     Platform,
-    StatusBar
+    StatusBar,
+    Image
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -88,59 +89,73 @@ const handleReset = async () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Reset Password</Text>
+            {/* Logo and App Name */}
+            <View style={styles.logoContainer}>
+                <Image source={require('../../assets/icon.png')} style={styles.logoImg} />
+                <Text style={styles.logoText}>Estatio</Text>
+            </View>
+            <Text style={styles.subtitle}>Reset your password</Text>
             <View style={styles.form}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Enter your email"
-                    autoCapitalize="none"
-                    keyboardType="email-address"
-                    value={email}
-                    onChangeText={setEmail}
-                />
-                <View style={{ justifyContent: 'center', }}>
-
-          <TextInput
-            style={styles.input}
-            placeholder="Old Password"
-            secureTextEntry={!oldPasswordVisible}
-            value={oldPassword}
-            onChangeText={setOldPassword}
-          />
-          <TouchableOpacity onPress={() => setOldPasswordVisible(!oldPasswordVisible)} style={styles.passVisibleWrapper}     >
-                   <Ionicons name={oldPasswordVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
-          </TouchableOpacity>
-        </View>
-                <View style={{ justifyContent: 'center', }}>
-
-          <TextInput
-                    style={styles.input}
-                    placeholder="New password"
-                    secureTextEntry={!passwordVisible}
-                    value={newPassword}
-                    onChangeText={setNewPassword}
-                />
-          <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)} style={styles.passVisibleWrapper}>
-            <Ionicons name={passwordVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
-          </TouchableOpacity>
-        </View>
-         
-        <View style={{ justifyContent: 'center', }}>
-
-          <TextInput
-            style={styles.input}
-            placeholder="Confirm Password"
-            secureTextEntry={!confirmPassVisible}
-            value={confirm}
-            onChangeText={setConfirm}
-          />
-          <TouchableOpacity onPress={() => setConfirmPassVisible(!confirmPassVisible)} style={styles.passVisibleWrapper}     >
-                   <Ionicons name={confirmPassVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
-          </TouchableOpacity>
-        </View>
-                
-                  <TouchableOpacity style={{backgroundColor:'#007AFF',padding:RFValue(10),justifyContent:'center',alignItems:'center',borderRadius:RFValue(10)}} onPress={handleReset}>
-                    <Text style={{color:'white',fontWeight:'600',fontSize:RFValue(12)}}>{'Reset Password'}</Text>
+                {/* Email Input with Icon */}
+                <View style={styles.inputWrapper}>
+                    <Ionicons name="mail-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter your email"
+                        placeholderTextColor="#B0B0B0"
+                        autoCapitalize="none"
+                        keyboardType="email-address"
+                        value={email}
+                        onChangeText={setEmail}
+                    />
+                </View>
+                {/* Old Password Input with Icon and Eye Toggle */}
+                <View style={styles.inputWrapper}>
+                    <Ionicons name="lock-closed-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Old Password"
+                        placeholderTextColor="#B0B0B0"
+                        secureTextEntry={!oldPasswordVisible}
+                        value={oldPassword}
+                        onChangeText={setOldPassword}
+                    />
+                    <TouchableOpacity onPress={() => setOldPasswordVisible(!oldPasswordVisible)} style={styles.passVisibleWrapper}>
+                        <Ionicons name={oldPasswordVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
+                    </TouchableOpacity>
+                </View>
+                {/* New Password Input with Icon and Eye Toggle */}
+                <View style={styles.inputWrapper}>
+                    <Ionicons name="lock-closed-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="New password"
+                        placeholderTextColor="#B0B0B0"
+                        secureTextEntry={!passwordVisible}
+                        value={newPassword}
+                        onChangeText={setNewPassword}
+                    />
+                    <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)} style={styles.passVisibleWrapper}>
+                        <Ionicons name={passwordVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
+                    </TouchableOpacity>
+                </View>
+                {/* Confirm Password Input with Icon and Eye Toggle */}
+                <View style={styles.inputWrapper}>
+                    <Ionicons name="lock-closed-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Confirm Password"
+                        placeholderTextColor="#B0B0B0"
+                        secureTextEntry={!confirmPassVisible}
+                        value={confirm}
+                        onChangeText={setConfirm}
+                    />
+                    <TouchableOpacity onPress={() => setConfirmPassVisible(!confirmPassVisible)} style={styles.passVisibleWrapper}>
+                        <Ionicons name={confirmPassVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity style={styles.loginButton} onPress={handleReset}>
+                    <Text style={styles.loginButtonText}>Reset Password</Text>
                 </TouchableOpacity>
             </View>
             <TouchableOpacity
@@ -156,35 +171,89 @@ const handleReset = async () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop:
-            Platform.OS === 'android'
-                ? StatusBar.currentHeight + 10
-                : 0,
+        backgroundColor: '#fff',
         alignItems: 'center',
-        backgroundColor: '#fff'
+        paddingTop: Platform.OS === 'android' ? RFValue(StatusBar.currentHeight ? StatusBar.currentHeight + 10 : 10) : 0,
+        paddingHorizontal: RFValue(18),
     },
-    title: {
-        fontSize: 22,
+    logoContainer: {
+        alignItems: 'center',
+        marginTop: RFValue(38),
+        marginBottom: RFValue(8),
+    },
+    logoImg: {
+        width: RFValue(64),
+        height: RFValue(64),
+        resizeMode: 'contain',
+        marginBottom: RFValue(2),
+    },
+    logoText: {
+        fontSize: RFValue(22),
+        fontWeight: 'bold',
+        color: '#00C48C',
+        letterSpacing: RFValue(0.5),
+    },
+    subtitle: {
+        fontSize: RFValue(15),
         fontWeight: '600',
-        marginVertical: 20
+        color: '#222',
+        marginBottom: RFValue(18),
     },
     form: {
-        width: '80%'
+        width: '100%',
+        marginBottom: RFValue(14),
+    },
+    inputWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: RFValue(1),
+        borderColor: '#00C48C',
+        borderRadius: RFValue(25),
+        paddingHorizontal: RFValue(14),
+        marginBottom: RFValue(12),
+        backgroundColor: '#fff',
+    },
+    inputIcon: {
+        fontSize: RFValue(18),
+        marginRight: RFValue(8),
+        color: '#B0B0B0',
     },
     input: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 6,
-        paddingHorizontal: 12,
-        paddingVertical: 8,
-        marginBottom: 16
+        flex: 1,
+        height: RFValue(44),
+        fontSize: RFValue(14),
+        color: '#222',
+    },
+    loginButton: {
+        backgroundColor: '#00C48C',
+        borderRadius: RFValue(24),
+        height: RFValue(48),
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: RFValue(8),
+        marginBottom: RFValue(10),
+        shadowColor: '#00C48C',
+        shadowOffset: { width: 0, height: RFValue(2) },
+        shadowOpacity: 0.15,
+        shadowRadius: RFValue(5),
+        elevation: 2,
+    },
+    loginButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: RFValue(16),
     },
     backLink: {
-        marginTop: 16
+        marginTop: RFValue(14),
+        alignSelf: 'center',
     },
     backText: {
-        color: '#007AFF'
+        color: '#00C48C',
+        fontWeight: 'bold',
+        fontSize: RFValue(14),
     },
-     passVisibleWrapper:{ position: 'absolute', alignSelf: 'flex-end', top:Platform.OS=='android'? RFValue(10):RFValue(8), right: RFValue(8) }
-
+    passVisibleWrapper: {
+        marginLeft: RFValue(8),
+        padding: RFValue(4),
+    },
 });

@@ -10,6 +10,7 @@ import {
     Alert,
     Platform,
     StatusBar,
+    Image,
 } from 'react-native';
 import { validateUserLogin, getDb } from '../common/sqlliteService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -20,15 +21,13 @@ import { Ionicons } from '@expo/vector-icons'
 export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-  const [passwordVisible, setPasswordVisible] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(false);
 
     const handleLogin = async () => {
         try {
             const user = await validateUserLogin(email, password);
             if (user) {
                 await AsyncStorage.setItem('@logged_in_email', user?.email);
-
                 navigation.replace('MainTabs');
             } else {
                 Alert.alert('Login failed', 'Invalid email or password');
@@ -38,78 +37,87 @@ export default function LoginScreen({ navigation }) {
             Alert.alert('Error', 'Something went wrong');
         }
     };
-const deleteAllData = async () => {
-  const db = await getDb();
-  await db.runAsync('DELETE FROM users');
-  await db.runAsync('DELETE FROM messages');
-  await db.runAsync('DELETE FROM favorites');
-  console.log('🔥 All data deleted.');
-};
+    const deleteAllData = async () => {
+        const db = await getDb();
+        await db.runAsync('DELETE FROM users');
+        await db.runAsync('DELETE FROM messages');
+        await db.runAsync('DELETE FROM favorites');
+        console.log('🔥 All data deleted.');
+    };
     useEffect(() => {
-  const debugAll = async () => {
-    console.log('🔍 Running debugAll...');
-    // await deleteAllData();
-    try {
-      const db = await getDb();
-      console.log('📦 Got DB');
-
-      const users = await db.getAllAsync('SELECT * FROM users');
-      const favorites = await db.getAllAsync('SELECT * FROM favorites');
-      const messages = await db.getAllAsync('SELECT * FROM messages');
-
-      console.log('👤 USERS:', users);
-      console.log('⭐ FAVORITES:', favorites);
-      console.log('💬 MESSAGES:', messages);
-    } catch (error) {
-      console.error(' DEBUG ERROR:', error);
-    }
-  };
-
-  if (__DEV__) {
-    debugAll();
-  }
-}, []);
-
+        const debugAll = async () => {
+            console.log('🔍 Running debugAll...');
+            // await deleteAllData();
+            try {
+                const db = await getDb();
+                console.log('📦 Got DB');
+                const users = await db.getAllAsync('SELECT * FROM users');
+                const favorites = await db.getAllAsync('SELECT * FROM favorites');
+                const messages = await db.getAllAsync('SELECT * FROM messages');
+                console.log('👤 USERS:', users);
+                console.log('⭐ FAVORITES:', favorites);
+                console.log('💬 MESSAGES:', messages);
+            } catch (error) {
+                console.error(' DEBUG ERROR:', error);
+            }
+        };
+        if (__DEV__) {
+            debugAll();
+        }
+    }, []);
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Welcome Back</Text>
+            {/* Logo and App Name */}
+            <View style={styles.logoContainer}>
+                <Image source={require('../../assets/icon.png')} style={styles.logoImg} />
+                <Text style={styles.logoText}>Estatio</Text>
+            </View>
+            <Text style={styles.subtitle}>Login to your account</Text>
             <View style={styles.form}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email"
-                    autoCapitalize="none"
-                    keyboardType="email-address"
-                    value={email}
-                    onChangeText={setEmail}
-                />
-               <View style={{ justifyContent: 'center', }}>
-
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            secureTextEntry={!passwordVisible}
-            value={password}
-            onChangeText={setPassword}
-          />
-          <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)} style={styles.passVisibleWrapper}>
-            <Ionicons name={passwordVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
-          </TouchableOpacity>
-        </View>
-                <TouchableOpacity style={{backgroundColor:'#007AFF',padding:RFValue(10),justifyContent:'center',alignItems:'center',borderRadius:RFValue(10)}} onPress={handleLogin}>
-                    <Text style={{color:'white',fontWeight:'600',fontSize:RFValue(12)}}>{'Log In'}</Text>
-                </TouchableOpacity>
+                {/* Email Input with Icon */}
+                <View style={styles.inputWrapper}>
+                    <Ionicons name="mail-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Email"
+                        placeholderTextColor="#B0B0B0"
+                        autoCapitalize="none"
+                        keyboardType="email-address"
+                        value={email}
+                        onChangeText={setEmail}
+                    />
+                </View>
+                {/* Password Input with Icon and Eye Toggle */}
+                <View style={styles.inputWrapper}>
+                    <Ionicons name="lock-closed-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Password"
+                        placeholderTextColor="#B0B0B0"
+                        secureTextEntry={!passwordVisible}
+                        value={password}
+                        onChangeText={setPassword}
+                    />
+                    <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)} style={styles.passVisibleWrapper}>
+                        <Ionicons name={passwordVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
+                    </TouchableOpacity>
+                </View>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('ForgotPassword')}
                     style={styles.forgotLink}
                 >
                     <Text style={styles.forgotText}>Forgot password?</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+                    <Text style={styles.loginButtonText}>Login</Text>
+                </TouchableOpacity>
             </View>
-            <View style={styles.footer}>
-                <Text>Don't have an account?</Text>
+            {/* Footer */}
+            <View style={styles.signupRow}>
+                <Text style={styles.signupText}>Don't have an account?</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-                    <Text style={styles.link}> Sign Up</Text>
+                    <Text style={styles.signupLink}> Sign up</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -119,42 +127,104 @@ const deleteAllData = async () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 10 : 0,
-        alignItems: 'center',
         backgroundColor: '#fff',
+        alignItems: 'center',
+        paddingTop: Platform.OS === 'android' ? RFValue(StatusBar.currentHeight ? StatusBar.currentHeight + 10 : 10) : 0,
+        paddingHorizontal: RFValue(18),
     },
-    title: {
-        fontSize: 24,
+    logoContainer: {
+        alignItems: 'center',
+        marginTop: RFValue(38),
+        marginBottom: RFValue(8),
+    },
+    logoImg: {
+        width: RFValue(64),
+        height: RFValue(64),
+        resizeMode: 'contain',
+        marginBottom: RFValue(2),
+    },
+    logoText: {
+        fontSize: RFValue(22),
         fontWeight: 'bold',
-        marginVertical: 24,
+        color: '#00C48C',
+        letterSpacing: RFValue(0.5),
+    },
+    subtitle: {
+        fontSize: RFValue(15),
+        fontWeight: '600',
+        color: '#222',
+        marginBottom: RFValue(18),
     },
     form: {
-        width: '80%',
+        width: '100%',
+        marginBottom: RFValue(14),
+    },
+    inputWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: RFValue(1),
+        borderColor: '#00C48C',
+        borderRadius: RFValue(25),
+        paddingHorizontal: RFValue(14),
+        marginBottom: RFValue(12),
+        backgroundColor: '#fff',
+    },
+    inputIcon: {
+        fontSize: RFValue(18),
+        marginRight: RFValue(8),
+        color: '#B0B0B0',
     },
     input: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 6,
-        paddingHorizontal: 12,
-        paddingVertical: 8,
-        marginBottom: 16,
+        flex: 1,
+        height: RFValue(44),
+        fontSize: RFValue(14),
+        color: '#222',
     },
     forgotLink: {
-        marginTop: 8,
         alignSelf: 'flex-end',
+        marginBottom: RFValue(10),
     },
     forgotText: {
-        color: '#007AFF',
-        fontSize: 14,
+        color: '#BDBDBD',
+        fontSize: RFValue(13),
+        fontWeight: '400',
     },
-    footer: {
+    loginButton: {
+        backgroundColor: '#00C48C',
+        borderRadius: RFValue(24),
+        height: RFValue(48),
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: RFValue(8),
+        marginBottom: RFValue(10),
+        shadowColor: '#00C48C',
+        shadowOffset: { width: 0, height: RFValue(2) },
+        shadowOpacity: 0.15,
+        shadowRadius: RFValue(5),
+        elevation: 2,
+    },
+    loginButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: RFValue(16),
+    },
+    signupRow: {
         flexDirection: 'row',
-        marginTop: 24,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: RFValue(8),
     },
-    link: {
-        color: '#007AFF',
-        fontWeight: '600',
+    signupText: {
+        color: '#BDBDBD',
+        fontSize: RFValue(13),
     },
-    passVisibleWrapper:{ position: 'absolute', alignSelf: 'flex-end', top:Platform.OS=='android'? RFValue(10):RFValue(8), right: RFValue(8) }
-
+    signupLink: {
+        color: '#00C48C',
+        fontWeight: 'bold',
+        fontSize: RFValue(13),
+    },
+    passVisibleWrapper: {
+        marginLeft: RFValue(8),
+        padding: RFValue(4),
+    },
 });
