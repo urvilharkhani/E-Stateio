@@ -48,90 +48,92 @@ export default function SignUpScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Logo and App Name */}
-      <View style={styles.logoContainer}>
-        <Image source={require('../../assets/icon.png')} style={styles.logoImg} />
-        <Text style={styles.logoText}>Estatio</Text>
-      </View>
-      <Text style={styles.subtitle}>Create your account</Text>
-      <View style={styles.form}>
-        {/* Name Input with Icon */}
-        <View style={styles.inputWrapper}>
-          <Ionicons name="person-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
-          <TextInput
-            style={styles.input}
-            placeholder="Name"
-            placeholderTextColor="#B0B0B0"
-            value={name}
-            onChangeText={setName}
-          />
+      <View style={{flex:1,paddingHorizontal:RFValue(20)}}>
+
+        <View style={styles.logoContainer}>
+          <Image source={require('../../assets/icon.png')} style={styles.logoImg} />
+          <Text style={styles.logoText}>Estatio</Text>
         </View>
-        {/* Email Input with Icon */}
-        <View style={styles.inputWrapper}>
-          <Ionicons name="mail-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            placeholderTextColor="#B0B0B0"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            value={email}
-            onChangeText={setEmail}
-          />
-        </View>
-        {/* Phone Input with Icon */}
-        <View style={styles.inputWrapper}>
-          <Ionicons name="call-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
-          <TextInput
-            style={styles.input}
-            placeholder="Phone"
-            placeholderTextColor="#B0B0B0"
-            keyboardType="phone-pad"
-            value={phone}
-            maxLength={10}
-            onChangeText={setPhone}
-          />
-        </View>
-        {/* Password Input with Icon and Eye Toggle */}
-        <View style={styles.inputWrapper}>
-          <Ionicons name="lock-closed-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            placeholderTextColor="#B0B0B0"
-            secureTextEntry={!passwordVisible}
-            value={password}
-            onChangeText={setPassword}
-          />
-          <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)} style={styles.passVisibleWrapper}>
-            <Ionicons name={passwordVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
+        <Text style={styles.subtitle}>Create your account</Text>
+        <View style={styles.form}>
+
+          <View style={styles.inputWrapper}>
+            <Ionicons name="person-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
+            <TextInput
+              style={styles.input}
+              placeholder="Name"
+              placeholderTextColor="#B0B0B0"
+              value={name}
+              onChangeText={setName}
+            />
+          </View>
+
+          <View style={styles.inputWrapper}>
+            <Ionicons name="mail-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              placeholderTextColor="#B0B0B0"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              value={email}
+              onChangeText={setEmail}
+            />
+          </View>
+
+          <View style={styles.inputWrapper}>
+            <Ionicons name="call-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
+            <TextInput
+              style={styles.input}
+              placeholder="Phone"
+              placeholderTextColor="#B0B0B0"
+              keyboardType="phone-pad"
+              value={phone}
+              maxLength={10}
+              onChangeText={setPhone}
+            />
+          </View>
+
+          <View style={styles.inputWrapper}>
+            <Ionicons name="lock-closed-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              placeholderTextColor="#B0B0B0"
+              secureTextEntry={!passwordVisible}
+              value={password}
+              onChangeText={setPassword}
+            />
+            <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)} style={styles.passVisibleWrapper}>
+              <Ionicons name={passwordVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.inputWrapper}>
+            <Ionicons name="lock-closed-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
+            <TextInput
+              style={styles.input}
+              placeholder="Confirm Password"
+              placeholderTextColor="#B0B0B0"
+              secureTextEntry={!confirmPassVisible}
+              value={confirm}
+              onChangeText={setConfirm}
+            />
+            <TouchableOpacity onPress={() => setConfirmPassVisible(!confirmPassVisible)} style={styles.passVisibleWrapper}>
+              <Ionicons name={confirmPassVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity style={styles.loginButton} onPress={handleSignUp}>
+            <Text style={styles.loginButtonText}>Sign Up</Text>
           </TouchableOpacity>
         </View>
-        {/* Confirm Password Input with Icon and Eye Toggle */}
-        <View style={styles.inputWrapper}>
-          <Ionicons name="lock-closed-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
-          <TextInput
-            style={styles.input}
-            placeholder="Confirm Password"
-            placeholderTextColor="#B0B0B0"
-            secureTextEntry={!confirmPassVisible}
-            value={confirm}
-            onChangeText={setConfirm}
-          />
-          <TouchableOpacity onPress={() => setConfirmPassVisible(!confirmPassVisible)} style={styles.passVisibleWrapper}>
-            <Ionicons name={confirmPassVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
+
+        <View style={styles.signupRow}>
+          <Text style={styles.signupText}>Already have an account?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.signupLink}> Log In</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.loginButton} onPress={handleSignUp}>
-          <Text style={styles.loginButtonText}>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
-      {/* Footer */}
-      <View style={styles.signupRow}>
-        <Text style={styles.signupText}>Already have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.signupLink}> Log In</Text>
-        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -141,7 +143,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    // alignItems: 'center',
     paddingTop: Platform.OS === 'android' ? RFValue(StatusBar.currentHeight ? StatusBar.currentHeight + 10 : 10) : 0,
     paddingHorizontal: RFValue(18),
   },
@@ -167,6 +169,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#222',
     marginBottom: RFValue(18),
+    textAlign:'center'
   },
   form: {
     width: '100%',

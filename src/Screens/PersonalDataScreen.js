@@ -148,6 +148,7 @@ export default function PersonalDataScreen() {
           <TextInput
             style={styles.input}
             value={profile.phone}
+            maxLength={10}
             onChangeText={text => setProfile(prev => ({ ...prev, phone: text }))}
             placeholder="Enter your phone"
             keyboardType="phone-pad"

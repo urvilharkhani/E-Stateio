@@ -89,14 +89,16 @@ const handleReset = async () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            {/* Logo and App Name */}
+            <View style={{flex:1, paddingHorizontal:RFValue(20)}}>
+
+            
             <View style={styles.logoContainer}>
                 <Image source={require('../../assets/icon.png')} style={styles.logoImg} />
                 <Text style={styles.logoText}>Estatio</Text>
             </View>
             <Text style={styles.subtitle}>Reset your password</Text>
             <View style={styles.form}>
-                {/* Email Input with Icon */}
+             
                 <View style={styles.inputWrapper}>
                     <Ionicons name="mail-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
                     <TextInput
@@ -109,8 +111,7 @@ const handleReset = async () => {
                         onChangeText={setEmail}
                     />
                 </View>
-                {/* Old Password Input with Icon and Eye Toggle */}
-                <View style={styles.inputWrapper}>
+                  <View style={styles.inputWrapper}>
                     <Ionicons name="lock-closed-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
                     <TextInput
                         style={styles.input}
@@ -124,8 +125,7 @@ const handleReset = async () => {
                         <Ionicons name={oldPasswordVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
                     </TouchableOpacity>
                 </View>
-                {/* New Password Input with Icon and Eye Toggle */}
-                <View style={styles.inputWrapper}>
+               <View style={styles.inputWrapper}>
                     <Ionicons name="lock-closed-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
                     <TextInput
                         style={styles.input}
@@ -139,7 +139,6 @@ const handleReset = async () => {
                         <Ionicons name={passwordVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
                     </TouchableOpacity>
                 </View>
-                {/* Confirm Password Input with Icon and Eye Toggle */}
                 <View style={styles.inputWrapper}>
                     <Ionicons name="lock-closed-outline" style={styles.inputIcon} size={20} color="#B0B0B0" />
                     <TextInput
@@ -164,6 +163,7 @@ const handleReset = async () => {
             >
                 <Text style={styles.backText}>Back to Login</Text>
             </TouchableOpacity>
+            </View>
         </SafeAreaView>
     );
 }
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
+        // alignItems: 'center',
         paddingTop: Platform.OS === 'android' ? RFValue(StatusBar.currentHeight ? StatusBar.currentHeight + 10 : 10) : 0,
         paddingHorizontal: RFValue(18),
     },
@@ -198,6 +198,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: '#222',
         marginBottom: RFValue(18),
+        textAlign:'center'
     },
     form: {
         width: '100%',
