@@ -15,9 +15,13 @@ import { validateUserLogin, getDb } from '../common/sqlliteService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RFValue } from 'react-native-responsive-fontsize';
 
+import { Ionicons } from '@expo/vector-icons'
+
 export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
     const handleLogin = async () => {
         try {
@@ -44,7 +48,7 @@ const deleteAllData = async () => {
     useEffect(() => {
   const debugAll = async () => {
     console.log('🔍 Running debugAll...');
-    // await deleteAllData();
+    await deleteAllData();
     try {
       const db = await getDb();
       console.log('📦 Got DB');
@@ -79,13 +83,19 @@ const deleteAllData = async () => {
                     value={email}
                     onChangeText={setEmail}
                 />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Password"
-                    secureTextEntry
-                    value={password}
-                    onChangeText={setPassword}
-                />
+               <View style={{ justifyContent: 'center', }}>
+
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            secureTextEntry={!passwordVisible}
+            value={password}
+            onChangeText={setPassword}
+          />
+          <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)} style={styles.passVisibleWrapper}>
+            <Ionicons name={passwordVisible ? 'eye-outline' : 'eye-off-outline'} size={RFValue(12)} color="#aaa" />
+          </TouchableOpacity>
+        </View>
                 <TouchableOpacity style={{backgroundColor:'#007AFF',padding:RFValue(10),justifyContent:'center',alignItems:'center',borderRadius:RFValue(10)}} onPress={handleLogin}>
                     <Text style={{color:'white',fontWeight:'600',fontSize:RFValue(12)}}>{'Log In'}</Text>
                 </TouchableOpacity>
@@ -145,4 +155,6 @@ const styles = StyleSheet.create({
         color: '#007AFF',
         fontWeight: '600',
     },
+    passVisibleWrapper:{ position: 'absolute', alignSelf: 'flex-end', top:Platform.OS=='android'? RFValue(10):RFValue(8), right: RFValue(8) }
+
 });

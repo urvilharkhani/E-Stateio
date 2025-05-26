@@ -190,5 +190,13 @@ export const getUnreadNotificationCount = async () => {
   );
   return rows.length;
 };
+export const updateUserPassword = async (email, newPassword) => {
+  const db = await getDb();
+  await db.runAsync(
+    'UPDATE users SET password = ? WHERE email = ?',
+    [newPassword, email]
+  );
+};
+
 
 export { getDb };

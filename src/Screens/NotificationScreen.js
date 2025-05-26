@@ -64,6 +64,8 @@ useFocusEffect(
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={{flex:1,paddingHorizontal:RFValue(20)}}>
+        
       <View style={styles.headerRow}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={RFValue(20)} />
@@ -82,6 +84,8 @@ useFocusEffect(
           renderItem={renderItem}
         />
       )}
+
+      </View>
     </SafeAreaView>
   );
 };
