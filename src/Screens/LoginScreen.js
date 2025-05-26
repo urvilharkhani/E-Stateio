@@ -48,7 +48,7 @@ const deleteAllData = async () => {
     useEffect(() => {
   const debugAll = async () => {
     console.log('🔍 Running debugAll...');
-    await deleteAllData();
+    // await deleteAllData();
     try {
       const db = await getDb();
       console.log('📦 Got DB');
